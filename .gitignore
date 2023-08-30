@@ -78,3 +78,4 @@ crashlytics-build.properties
 *.json
 .vsconfig
 *.sln
+.unity
