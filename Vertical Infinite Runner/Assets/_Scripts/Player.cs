@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-
+    private Rigidbody2D rb;
 
     public Transform leftLimit;
     public Transform rightLimit;
     [SerializeField] private float playerSpeed = 5f;
 
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        //rb.bodyType = RigidbodyType2D.Kinematic;
+    }
 
     private void Update()
     {
@@ -27,5 +34,14 @@ public class Player : MonoBehaviour
 
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Collidable"))
+        {
+            Debug.Log("Ouch");
+            Time.timeScale = 0f;
+        }
+    }
 
 }
