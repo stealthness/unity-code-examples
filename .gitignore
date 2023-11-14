@@ -80,4 +80,4 @@ crashlytics-build.properties
 *.sln
 .unity
 
-*/[Tt]extMesh Pro/
+*/"[Tt]extMesh Pro"/
