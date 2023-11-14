@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private readonly int CLICK_POINT_VALUE = 1;
+    private readonly string TARGET_TAG = "Target";
+    public Score GameScore;
 
     // Update is called once per frame
     void Update()
@@ -18,9 +21,10 @@ public class GameManager : MonoBehaviour
             if (collider != null)
             {
                 Debug.Log($"hit {collider.name}");
-                if (collider.CompareTag("Target"))
+                if (collider.CompareTag(TARGET_TAG))
                 {
                     Destroy(collider.gameObject);
+                    GameScore.IncreaseScore(CLICK_POINT_VALUE);
                 }
 
             }
