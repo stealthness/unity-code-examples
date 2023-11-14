@@ -2,26 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the spawing of target clones
+/// </summary>
 public class TargetManager : MonoBehaviour
 {
+
+    private const int MinInclusive = -4;
+    private const int MaxExclusive = 4;
+    private const float FirstSpawnTime = 0f;
+    private const float RepeatSpawnRate = 0.5f;
 
     public GameObject TargetPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("CreateTarget", 0f, 0.5f);
+        InvokeRepeating("CreateTarget", FirstSpawnTime, RepeatSpawnRate);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    /// <summary>
+    /// Create a new Target a a Random location
+    /// </summary>
     void CreateTarget()
     {
-        Vector3 randomPos = new Vector3(Random.Range(-4, 4), Random.Range(-4, 4), 0f);
-        Instantiate(TargetPrefab, randomPos, Quaternion.identity);
+        Instantiate(TargetPrefab, GetRandomPosition(), Quaternion.identity);
+    }
+
+    /// <summary>
+    /// Returns a random position for target to be created at
+    /// </summary>
+    /// <returns>a random vector</returns>
+    private static Vector3 GetRandomPosition()
+    {
+        return new Vector3(Random.Range(MinInclusive, MaxExclusive), Random.Range(MinInclusive, MaxExclusive), 0f);
     }
 }
