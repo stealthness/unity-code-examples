@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
 
             if (collider != null)
             {
-                Debug.Log($"hit {collider.name}");
                 if (collider.CompareTag(TARGET_TAG))
                 {
                     Destroy(collider.gameObject);
@@ -46,6 +46,11 @@ public class GameManager : MonoBehaviour
 
             }
         }
+    }
+
+    internal void EndGame()
+    {
+        state = GameState.FINISH;
     }
 }
 

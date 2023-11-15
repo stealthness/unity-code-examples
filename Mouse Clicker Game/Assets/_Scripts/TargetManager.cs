@@ -38,4 +38,12 @@ public class TargetManager : MonoBehaviour
     {
         return new Vector3(Random.Range(MinInclusive, MaxExclusive), Random.Range(MinInclusive, MaxExclusive), 0f);
     }
+
+    /// <summary>
+    /// Cancels the spawning of targets
+    /// </summary>
+    public void CancelTargetSpawn()
+    {
+        CancelInvoke();
+    }
 }
