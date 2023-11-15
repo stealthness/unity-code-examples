@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     /// Reference to Score script to update the game's score
     /// </summary> 
     public Score GameScore;
+    public TargetManager TargetManager;
+    public MenuUI MenuUI;
+    public Timer Timer;
 
     private void Start()
     {
@@ -48,9 +51,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    internal void EndGame()
+    public void EndGame()
     {
         state = GameState.FINISH;
+
+    }
+
+    public void StartGame()
+    {
+        state = GameState.MENU;
+        TargetManager.StartTargetSpawning();
+        Timer.StartTimer();
     }
 }
 

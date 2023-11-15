@@ -14,7 +14,6 @@ public class Timer : MonoBehaviour
     void Start()
     {
         ResetTimer();
-        StartTimer();
     }
 
     /// <summary>

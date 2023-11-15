@@ -15,12 +15,6 @@ public class TargetManager : MonoBehaviour
 
     public GameObject TargetPrefab;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        InvokeRepeating("CreateTarget", FirstSpawnTime, RepeatSpawnRate);
-    }
-
 
     /// <summary>
     /// Create a new Target a a Random location
@@ -45,5 +39,10 @@ public class TargetManager : MonoBehaviour
     public void CancelTargetSpawn()
     {
         CancelInvoke();
+    }
+
+    public void StartTargetSpawning()
+    {
+        InvokeRepeating("CreateTarget", FirstSpawnTime, RepeatSpawnRate);
     }
 }
