@@ -13,6 +13,7 @@ public class MenuUI : MonoBehaviour
 
     public TextMeshProUGUI highScoreText;
     public TextMeshProUGUI newHighScoreText;
+    public AudioSource clickButtonAudio;
     private readonly float END_GAME_DELAY = 2f;
 
 
@@ -28,6 +29,7 @@ public class MenuUI : MonoBehaviour
     /// </summary>
     public void StartGameButtonClicked()
     {
+        clickButtonAudio.Play();
         StartMenuGamePanel.gameObject.SetActive(false);
         GameManager.StartGame();
     }
@@ -37,6 +39,7 @@ public class MenuUI : MonoBehaviour
     /// </summary>
     public void ContinueButtonClicked()
     {
+        clickButtonAudio.Play();
         HighScoreGamePanel.SetActive(false);
         StartMenuGamePanel.SetActive(true);
     }

@@ -15,8 +15,7 @@ public class TargetManager : MonoBehaviour
     private List<GameObject> targets = new();
 
     public GameObject TargetPrefab;
-
-
+    
     /// <summary>
     /// Create a new Target a a Random location
     /// </summary>

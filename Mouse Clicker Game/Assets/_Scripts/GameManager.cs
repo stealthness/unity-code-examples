@@ -6,13 +6,12 @@ public class GameManager : MonoBehaviour
     private readonly string TARGET_TAG = "Target";
     private GameState state;
 
-    /// <summary>
-    /// Reference to Score script to update the game's score
-    /// </summary> 
     public Score GameScore;
     public TargetManager TargetManager;
     public MenuUI MenuUI;
     public Timer Timer;
+    public AudioSource TargetHitAudioSource;
+    public AudioSource endGameSound;
 
     private void Start()
     {
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour
             {
                 if (collider.CompareTag(TARGET_TAG))
                 {
+                    TargetHitAudioSource.Play();
                     TargetManager.RemoveTarget(collider.gameObject);
                     GameScore.IncreaseScore(CLICK_POINT_VALUE);
                 }
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        endGameSound.Play();
         state = GameState.FINISH;
         int gameScore = GameScore.GetScore();
         int highScore = GameScore.CheckHighScore();
