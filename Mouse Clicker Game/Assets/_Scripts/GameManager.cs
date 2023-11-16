@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     private GameState state;
 
     public Score GameScore;
-    public TargetManager TargetManager;
     public MenuUI MenuUI;
     public Timer Timer;
     public AudioSource TargetHitAudioSource;
@@ -55,7 +54,7 @@ public class GameManager : MonoBehaviour
                 if (collider.CompareTag(TARGET_TAG))
                 {
                     TargetHitAudioSource.Play();
-                    TargetManager.RemoveTarget(collider.gameObject);
+                    TargetManager.Instance.RemoveTarget(collider.gameObject);
                     GameScore.IncreaseScore(CLICK_POINT_VALUE);
                 }
 
@@ -77,7 +76,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         state = GameState.STARTED;
-        TargetManager.StartTargetSpawning();
+        TargetManager.Instance.StartTargetSpawning();
         Timer.StartTimer();
         GameScore.ResetScore();
     }

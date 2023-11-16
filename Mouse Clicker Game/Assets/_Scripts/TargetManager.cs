@@ -15,7 +15,19 @@ public class TargetManager : MonoBehaviour
     private List<GameObject> targets = new();
 
     public GameObject TargetPrefab;
-    
+
+    public static TargetManager Instance;
+
+    public void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        Instance = this;
+    }
+
+
     /// <summary>
     /// Create a new Target a a Random location
     /// </summary>
