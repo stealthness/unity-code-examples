@@ -16,7 +16,7 @@ public class Score : MonoBehaviour
 
     private void Start()
     {
-        highScore = 5;
+        highScore = 10;
         gameScore = 0;
     }
 
@@ -37,6 +37,7 @@ public class Score : MonoBehaviour
     public void ResetScore()
     {
         gameScore = 0;
+        GameScoreText.text = $"{gameScore}";
     }
 
     public int GetScore()
