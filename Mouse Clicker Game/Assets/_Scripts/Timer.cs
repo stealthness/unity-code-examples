@@ -30,7 +30,7 @@ public class Timer : MonoBehaviour
         {
             CancelInvoke();
             FindObjectOfType<TargetManager>().CancelTargetSpawn();
-            FindObjectOfType<GameManager>().EndGame();
+            GameManager.Instance.EndGame();
         }
         else
         {

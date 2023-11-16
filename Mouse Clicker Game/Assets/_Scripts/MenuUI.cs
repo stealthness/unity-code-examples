@@ -9,7 +9,6 @@ public class MenuUI : MonoBehaviour
 
     public GameObject HighScoreGamePanel;
     public GameObject StartMenuGamePanel;
-    public GameManager GameManager;
 
     public TextMeshProUGUI LastGameScoreText;
     public TextMeshProUGUI HighScoreText;
@@ -32,7 +31,7 @@ public class MenuUI : MonoBehaviour
     {
         clickButtonAudio.Play();
         StartMenuGamePanel.gameObject.SetActive(false);
-        GameManager.StartGame();
+        GameManager.Instance.StartGame();
     }
 
     /// <summary>

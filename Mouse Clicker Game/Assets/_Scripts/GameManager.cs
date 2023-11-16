@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public AudioSource TargetHitAudioSource;
     public AudioSource endGameSound;
 
-    public GameManager Instance;
+    public static GameManager Instance;
 
 
     private void Awake()
