@@ -55,9 +55,9 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         state = GameState.FINISH;
-        Score score = GetComponent<Score>();       
-        MenuUI.EndGame(1, 5, true);
-        //MenuUI.EndGame(score.GetScore(), score.CheckHighScore());
+        int gameScore = GameScore.GetScore();
+        int highScore = GameScore.CheckHighScore();
+        MenuUI.EndGame(gameScore, highScore, false);
 
     }
 

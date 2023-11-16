@@ -64,9 +64,9 @@ public class TargetManager : MonoBehaviour
         targets.Clear();
     }
 
-    internal void RemoveTarget(GameObject gameObject)
+    public void RemoveTarget(GameObject target)
     {
-        targets.Remove(gameObject);
-        Destroy(gameObject);
+        targets.Remove(target);
+        Destroy(target);
     }
 }
