@@ -21,6 +21,7 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void StartTimer()
     {
+        ResetTimer();
         InvokeRepeating("NextSec", 1f, 1f);
     }
 

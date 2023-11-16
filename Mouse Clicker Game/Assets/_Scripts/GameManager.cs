@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        state = GameState.STARTED;
+        state = GameState.MENU;
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-
+        // else GameState.Start
         if (Input.GetMouseButtonDown(0))
         {
             // convert the mouse position to world point, adding new Vector3(0, 0, 10); the distance of the camera in z axis
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             {
                 if (collider.CompareTag(TARGET_TAG))
                 {
-                    Destroy(collider.gameObject);
+                    TargetManager.RemoveTarget(collider.gameObject);
                     GameScore.IncreaseScore(CLICK_POINT_VALUE);
                 }
 
@@ -51,17 +51,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public void EndGame()
     {
         state = GameState.FINISH;
+        Score score = GetComponent<Score>();       
+        MenuUI.EndGame(1, 5, true);
+        //MenuUI.EndGame(score.GetScore(), score.CheckHighScore());
 
     }
 
     public void StartGame()
     {
-        state = GameState.MENU;
+        state = GameState.STARTED;
         TargetManager.StartTargetSpawning();
         Timer.StartTimer();
+        GameScore.ResetScore();
     }
 }
 

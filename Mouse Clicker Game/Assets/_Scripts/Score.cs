@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
     private int gameScore;
+    private int highScore;
     /// <summary>
     /// Reference to a game's UI score text
     /// </summary>
@@ -14,6 +16,7 @@ public class Score : MonoBehaviour
 
     private void Start()
     {
+        highScore = 5;
         gameScore = 0;
     }
 
@@ -34,5 +37,19 @@ public class Score : MonoBehaviour
     public void ResetScore()
     {
         gameScore = 0;
+    }
+
+    public int GetScore()
+    {
+        return gameScore;
+    }
+
+    public int CheckHighScore()
+    {
+        if (highScore < gameScore)
+        {
+            highScore = gameScore;
+        }
+        return highScore;
     }
 }

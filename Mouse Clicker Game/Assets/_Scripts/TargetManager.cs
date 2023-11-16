@@ -13,6 +13,8 @@ public class TargetManager : MonoBehaviour
     private const float FirstSpawnTime = 0f;
     private const float RepeatSpawnRate = 0.5f;
 
+    private List<GameObject> targets = new();
+
     public GameObject TargetPrefab;
 
 
@@ -21,7 +23,8 @@ public class TargetManager : MonoBehaviour
     /// </summary>
     void CreateTarget()
     {
-        Instantiate(TargetPrefab, GetRandomPosition(), Quaternion.identity);
+        var target = Instantiate(TargetPrefab, GetRandomPosition(), Quaternion.identity);
+        targets.Add(target);
     }
 
     /// <summary>
@@ -43,6 +46,27 @@ public class TargetManager : MonoBehaviour
 
     public void StartTargetSpawning()
     {
+        DestoyAllTargets();
         InvokeRepeating("CreateTarget", FirstSpawnTime, RepeatSpawnRate);
+    }
+
+    private void DestoyAllTargets()
+    {
+        targets.ForEach(target => 
+        {
+            if (target != null)
+            {
+                target.SetActive(false);
+                Destroy(target);
+            }
+
+        });
+        targets.Clear();
+    }
+
+    internal void RemoveTarget(GameObject gameObject)
+    {
+        targets.Remove(gameObject);
+        Destroy(gameObject);
     }
 }
