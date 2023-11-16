@@ -8,7 +8,6 @@ public class CollidableObject : MonoBehaviour
 {
 
     private BoxCollider2D box;
-    [SerializeField] private float speed = 5f;
 
     private void Awake()
     {
@@ -18,7 +17,7 @@ public class CollidableObject : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Time.deltaTime * speed * Vector3.down);
+        transform.Translate(Time.deltaTime * GameManager.Instance.GameSpeed * Vector3.down);
     }
 
 

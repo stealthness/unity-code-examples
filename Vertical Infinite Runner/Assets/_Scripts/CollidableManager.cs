@@ -11,6 +11,7 @@ public class CollidableManager : MonoBehaviour
     [SerializeField] private float maxFrequencyTime;
 
     public static CollidableManager Instance;
+    private readonly float percentageDecreaseMaxFrequency = 0.99f;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class CollidableManager : MonoBehaviour
         var y = leftLimit.position.y;
         Instantiate(CollidableObjectPrefab, new Vector3(x, y, 0), Quaternion.identity);
         float timeToNextCollidableObject = Random.Range(minFrequencyTime, maxFrequencyTime);
+        maxFrequencyTime = Mathf.Max(minFrequencyTime, maxFrequencyTime * percentageDecreaseMaxFrequency);
         Invoke(nameof(CreateCollidableObject), timeToNextCollidableObject);
     }
 
