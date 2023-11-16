@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,7 +51,7 @@ public class TargetManager : MonoBehaviour
 
     private void DestoyAllTargets()
     {
-        targets.ForEach(target => 
+        targets.ForEach(target =>
         {
             if (target != null)
             {

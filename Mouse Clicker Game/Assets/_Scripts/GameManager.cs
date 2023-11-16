@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -57,7 +54,7 @@ public class GameManager : MonoBehaviour
         state = GameState.FINISH;
         int gameScore = GameScore.GetScore();
         int highScore = GameScore.CheckHighScore();
-        MenuUI.EndGame(gameScore, highScore, false);
+        MenuUI.ShowHighScorePanel(gameScore, highScore, false);
 
     }
 

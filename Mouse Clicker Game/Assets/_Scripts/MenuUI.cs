@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,8 +7,8 @@ using UnityEngine;
 public class MenuUI : MonoBehaviour
 {
 
-    public GameObject EndGamePanel;
-    public GameObject StartGamePanel;
+    public GameObject HighScoreGamePanel;
+    public GameObject StartMenuGamePanel;
     public GameManager GameManager;
 
     public TextMeshProUGUI highScoreText;
@@ -20,40 +19,39 @@ public class MenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartGamePanel.gameObject.SetActive(true);
-        EndGamePanel.gameObject.SetActive(false);
+        StartMenuGamePanel.gameObject.SetActive(true);
+        HighScoreGamePanel.gameObject.SetActive(false);
     }
 
-
-    public void StartGame()
+    /// <summary>
+    ///  Called when the StartGameButton is clicked on the menu game panel
+    /// </summary>
+    public void StartGameButtonClicked()
     {
+        StartMenuGamePanel.gameObject.SetActive(false);
         GameManager.StartGame();
-        StartGamePanel.gameObject.SetActive(false);
     }
 
-    public void EndGame(int score, int highScore, bool isNewHighScore)
+
+    public void ShowHighScorePanel(int score, int highScore, bool isNewHighScore)
     {
-        if (isNewHighScore)
-        {
-            newHighScoreText.gameObject.SetActive(true);
-            highScoreText.text = $"{score}";
-        }
-        else
-        {
-            newHighScoreText.gameObject.SetActive(false);
-            highScoreText.text = $"{score}";
-        }
-        Invoke("EndGameDelay", END_GAME_DELAY);
+
+        newHighScoreText.gameObject.SetActive(isNewHighScore);
+        highScoreText.text = $"{highScore}";
+        Invoke("ShowHighScorePanelDelay", END_GAME_DELAY);
     }
 
-    public void Continue()
+    /// <summary>
+    /// Called when the Contineue Button is clicked on theend game panel
+    /// </summary>
+    public void ContinueButtonClicked()
     {
-        EndGamePanel.SetActive(false);
-        StartGamePanel.SetActive(true);
+        HighScoreGamePanel.SetActive(false);
+        StartMenuGamePanel.SetActive(true);
     }
 
-    public void EndGameDelay()
+    public void ShowHighScorePanelDelay()
     {
-        EndGamePanel.gameObject.SetActive(true);
+        HighScoreGamePanel.gameObject.SetActive(true);
     }
 }

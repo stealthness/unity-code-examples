@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -27,7 +25,7 @@ public class Timer : MonoBehaviour
 
     private void NextSec()
     {
-        
+
         if (gameTimer <= 0)
         {
             CancelInvoke();
