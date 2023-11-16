@@ -8,13 +8,13 @@ public class Score : MonoBehaviour
 {
     private int gameScore;
     private int highScore;
-    /// <summary>
-    /// Reference to a game's UI score text
-    /// </summary>
+    public bool isNewHighScore { get; private set; }
+
     public TextMeshProUGUI GameScoreText;
 
     private void Start()
     {
+        isNewHighScore = false;
         highScore = 10;
         gameScore = 0;
     }
@@ -39,17 +39,22 @@ public class Score : MonoBehaviour
         GameScoreText.text = $"{gameScore}";
     }
 
-    public int GetScore()
-    {
-        return gameScore;
-    }
+    public int GetScore() => gameScore;
 
-    public int CheckHighScore()
+    public int CheckHighScore
     {
-        if (highScore < gameScore)
+        get
         {
-            highScore = gameScore;
+            if (highScore < gameScore)
+            {
+                isNewHighScore = true;
+                highScore = gameScore;
+            }
+            else
+            {
+                isNewHighScore = false;
+            }
+            return highScore;
         }
-        return highScore;
     }
 }

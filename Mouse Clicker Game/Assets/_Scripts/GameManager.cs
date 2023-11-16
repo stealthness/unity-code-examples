@@ -13,6 +13,21 @@ public class GameManager : MonoBehaviour
     public AudioSource TargetHitAudioSource;
     public AudioSource endGameSound;
 
+    public GameManager Instance;
+
+
+    private void Awake()
+    {
+        if (Instance != null) {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        
+    }
+
     private void Start()
     {
         state = GameState.MENU;
@@ -54,8 +69,8 @@ public class GameManager : MonoBehaviour
         endGameSound.Play();
         state = GameState.FINISH;
         int gameScore = GameScore.GetScore();
-        int highScore = GameScore.CheckHighScore();
-        MenuUI.ShowHighScorePanel(gameScore, highScore, false);
+        int highScore = GameScore.CheckHighScore;
+        MenuUI.ShowHighScorePanel(gameScore, highScore, GameScore.isNewHighScore);
 
     }
 

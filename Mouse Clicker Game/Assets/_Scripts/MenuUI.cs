@@ -11,8 +11,9 @@ public class MenuUI : MonoBehaviour
     public GameObject StartMenuGamePanel;
     public GameManager GameManager;
 
-    public TextMeshProUGUI highScoreText;
-    public TextMeshProUGUI newHighScoreText;
+    public TextMeshProUGUI LastGameScoreText;
+    public TextMeshProUGUI HighScoreText;
+    public TextMeshProUGUI NewHighScoreRecordText;
     public AudioSource clickButtonAudio;
     private readonly float END_GAME_DELAY = 2f;
 
@@ -53,8 +54,9 @@ public class MenuUI : MonoBehaviour
     public void ShowHighScorePanel(int score, int highScore, bool isNewHighScore)
     {
 
-        newHighScoreText.gameObject.SetActive(isNewHighScore);
-        highScoreText.text = $"{highScore}";
+        NewHighScoreRecordText.gameObject.SetActive(isNewHighScore);
+        HighScoreText.text = $"{highScore}";
+        LastGameScoreText.text = $"{score}";
         Invoke("ShowHighScorePanelDelay", END_GAME_DELAY);
     }
 

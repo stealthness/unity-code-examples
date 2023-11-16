@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private const int GAME_TIME_LENGTH = 10;
+    private const int GAME_TIME_LENGTH = 60;
     private int gameTimer;
 
     public TextMeshProUGUI TimerText;
