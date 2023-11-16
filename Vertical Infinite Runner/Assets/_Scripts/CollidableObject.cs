@@ -8,7 +8,6 @@ public class CollidableObject : MonoBehaviour
 {
 
     private BoxCollider2D box;
-
     [SerializeField] private float speed = 5f;
 
     private void Awake()
