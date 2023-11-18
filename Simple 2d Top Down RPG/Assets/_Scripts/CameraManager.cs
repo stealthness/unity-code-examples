@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform Target;
+    public Vector3 Offset;
 
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        
+        transform.position = Offset + Target.position;
     }
 }
