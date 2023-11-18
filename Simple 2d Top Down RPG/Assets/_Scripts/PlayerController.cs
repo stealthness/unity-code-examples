@@ -6,14 +6,10 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    internal static readonly string Tag = "Player";
+
     public Vector2 MoveDir { get; private set;}
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
