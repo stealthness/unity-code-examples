@@ -7,7 +7,6 @@ public class Chest : MonoBehaviour
     public Sprite emptyChest;
     public AudioSource PickupCoinSound;
     private SpriteRenderer spriteRenderer;
-    private readonly float TimeDelay = 0.5f;
     private readonly float fadeDuration = 0.5f;
 
     private void Awake()
@@ -21,16 +20,12 @@ public class Chest : MonoBehaviour
         if (collision.CompareTag(PlayerController.Tag))
         {
             Debug.Log("Chest Hit");
+            collision.GetComponent<Health>().ReduceHealth(10);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<AudioSource>().Play();
             spriteRenderer.sprite = emptyChest;
             StartCoroutine(FadeObject());
         }
-    }
-
-    private void delayedDestroy()
-    {
-        Destroy(gameObject);
     }
 
 
