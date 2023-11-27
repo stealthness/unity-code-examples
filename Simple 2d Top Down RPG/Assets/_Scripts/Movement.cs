@@ -8,9 +8,9 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Movement : MonoBehaviour
 {
-    Collider2D box;
+    internal Collider2D box;
     Rigidbody2D rb;
-    SpriteRenderer sr;
+    internal SpriteRenderer sr;
 
     [SerializeField] protected float speed = 1f;
 
