@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1245141002391310882}
   - component: {fileID: 4681120627064476852}
   - component: {fileID: 3606328617579305828}
+  - component: {fileID: 1594489078711753022}
+  - component: {fileID: 8448519604346966156}
   m_Layer: 0
   m_Name: Goul
   m_TagString: Untagged
@@ -172,3 +174,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+--- !u!114 &1594489078711753022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372412547015002861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2a6ebddc80277458eac6daf9ab428c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  _speed: 1
+  _forward: 1
+  nextWayPoint: 0
+--- !u!114 &8448519604346966156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372412547015002861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81f44a699d0b534fa71700c5f94766a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

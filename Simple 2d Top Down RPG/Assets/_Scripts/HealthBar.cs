@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     public Image fill;
 
     [SerializeField] private Color backgroundColor = Color.black;
-    [SerializeField] private Color fillColor = Color.white;
+    [SerializeField] private Color fillColor = Color.green;
     [SerializeField] private float MaxHealthBarValue = 100f;
     [SerializeField] private float MinHealthBarValue = 0f;
 

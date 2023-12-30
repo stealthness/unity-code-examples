@@ -33,7 +33,9 @@ public class Health : MonoBehaviour
         }
         else
         {
+            Debug.Log("Death");
             currentHealth = 0;
+            OnHealthChange?.Invoke(currentHealth);
             OnDeath?.Invoke();
         }
         
