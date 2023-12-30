@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.Events;
 using UnityEngine;
-using System;
 
 public class PlayerController : MonoBehaviour
 {
     internal static readonly string Tag = "Player";
+    private readonly float TOL = 0.01f;
 
     public Vector2 MoveDir { get; private set;}
 
@@ -18,7 +15,7 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxis("Vertical");
 
         MoveDir = new Vector2(x, y);
-        if (MoveDir.magnitude > 0.01f)
+        if (MoveDir.magnitude > TOL)
         {
             MoveDir = MoveDir.normalized;
         }
