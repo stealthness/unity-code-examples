@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
     public Transform Target;
     public Vector3 Offset;
+    [SerializeField] private float CamMoveSpeed = 5f;
 
-
-    private void Update()
+    /// <summary>
+    /// Late Update to avoid desync issues
+    /// </summary>
+    private void LateUpdate()
     {
-        transform.position = Offset + Target.position;
+        //transform.position = Offset + Target.position;
+        transform.position = Vector3.Lerp(transform.position, Offset + Target.position,  CamMoveSpeed * Time.deltaTime);
     }
 }
