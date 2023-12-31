@@ -7,22 +7,49 @@ public class ObjectPathRepeater : MonoBehaviour
 
     public GameObject[] waypoints;
 
+    [SerializeField] private int startAtIndexPosition = -1;
+    [SerializeField] private int nextWayPoint = 0;
     [SerializeField] private float _speed = 1f;
     [SerializeField] private bool _forward = true;
-    public int nextWayPoint;
 
     private readonly float TOL = 0.01f;
     private Vector3 _dir;
 
     void Start()
     {
+        if (startAtIndexPosition < 0)
+        {
+            return;
+        }
+
+        
         if (_forward)
         {
-            transform.position = waypoints[0].transform.position;
-            nextWayPoint = 1;
+            if (startAtIndexPosition < waypoints.Length - 1)
+            {
+                transform.position = waypoints[startAtIndexPosition].transform.position;
+                nextWayPoint = startAtIndexPosition + 1; ;
+            }
+            else
+            {
+                transform.position = waypoints[startAtIndexPosition].transform.position;
+                _forward = false;
+                nextWayPoint = startAtIndexPosition - 1;
+            }
         }
         else
         {
+            if (startAtIndexPosition > 0)
+            {
+                transform.position = waypoints[startAtIndexPosition].transform.position;
+                nextWayPoint = startAtIndexPosition - 1; ;
+            }
+            else
+            {
+                transform.position = waypoints[0].transform.position;
+                _forward = true;
+                nextWayPoint = 1;
+            }
 
             transform.position = waypoints[waypoints.Length - 1].transform.position;
             nextWayPoint = waypoints.Length - 2;
