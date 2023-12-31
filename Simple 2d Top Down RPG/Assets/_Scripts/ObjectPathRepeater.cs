@@ -19,6 +19,7 @@ public class ObjectPathRepeater : MonoBehaviour
     {
         if (startAtIndexPosition < 0)
         {
+            // stats at the current position and heads to nextWayPoint
             return;
         }
 
@@ -30,7 +31,7 @@ public class ObjectPathRepeater : MonoBehaviour
                 transform.position = waypoints[startAtIndexPosition].transform.position;
                 nextWayPoint = startAtIndexPosition + 1; ;
             }
-            else
+            else // if startAtIndexPosition is at the end then direction is reversed
             {
                 transform.position = waypoints[startAtIndexPosition].transform.position;
                 _forward = false;
@@ -44,15 +45,13 @@ public class ObjectPathRepeater : MonoBehaviour
                 transform.position = waypoints[startAtIndexPosition].transform.position;
                 nextWayPoint = startAtIndexPosition - 1; ;
             }
-            else
+            else // if startAtIndexPosition is at the start then direction is reversed
             {
                 transform.position = waypoints[0].transform.position;
                 _forward = true;
                 nextWayPoint = 1;
             }
 
-            transform.position = waypoints[waypoints.Length - 1].transform.position;
-            nextWayPoint = waypoints.Length - 2;
         }
 
     }
