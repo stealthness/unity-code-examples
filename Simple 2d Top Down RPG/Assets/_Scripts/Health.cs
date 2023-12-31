@@ -26,6 +26,7 @@ public class Health : MonoBehaviour
 
     public void ReduceHealth(int amount)
     {
+        Debug.Log($"reduce health by {amount} from {currentHealth}");
         if (currentHealth > amount) 
         {
             currentHealth -= amount;

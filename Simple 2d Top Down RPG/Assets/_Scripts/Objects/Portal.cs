@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,6 +11,8 @@ public class Portal : MonoBehaviour
     [SerializeField] private float timeOfDelayedMenu = 3f;
     private BoxCollider2D box;
     private Rigidbody2D rb;
+
+    public UnityEvent OnPlayerTouch;
 
 
     private void Awake()
@@ -25,6 +28,7 @@ public class Portal : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Debug.Log("End of Level");
+            OnPlayerTouch.Invoke();
             Invoke(nameof(LoadMenu), timeOfDelayedMenu);
         }
     }

@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour
     public Image background;
     public Image fill;
 
-    [SerializeField] private Color backgroundColor = Color.black;
+    [SerializeField] private Color backgroundColor = Color.red;
     [SerializeField] private Color fillColor = Color.green;
     [SerializeField] private float MaxHealthBarValue = 100f;
     [SerializeField] private float MinHealthBarValue = 0f;
@@ -19,18 +19,13 @@ public class HealthBar : MonoBehaviour
         Slider.minValue = 0f;
         background.color = backgroundColor;
         fill.color = fillColor;
-        Slider.value = 70;
+        Slider.value = 100;
     }
 
-    public void UpdateHealthBar(float newHealthValue)
+
+    public void UpdateHealthBar(int newHealthValue)
     {
-        Debug.Log($"Heath: {newHealthValue}");
+        Debug.Log($"<int> newHealthValue for healthBar: {newHealthValue}");
         Slider.value = Mathf.Clamp(MinHealthBarValue, newHealthValue, MaxHealthBarValue);
-    }
-
-    public void UpdateHealthBar(int currentHealthValue)
-    {
-        Debug.Log($"currentHealthValue for healthBar: {currentHealthValue}");
-        UpdateHealthBar(currentHealthValue / MaxHealthBarValue);
     }
 }

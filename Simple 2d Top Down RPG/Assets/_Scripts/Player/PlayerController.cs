@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     internal static readonly string Tag = "Player";
     private readonly float TOL = 0.01f;
+    private PlayerState playerState = PlayerState.Playable;
 
     public Vector2 MoveDir { get; private set;}
 
@@ -11,6 +12,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (playerState == PlayerState.Disabled)
+        {
+            MoveDir = Vector2.zero;
+            return;
+        }
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
@@ -25,4 +33,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void DiasablePlayer()
+    {
+        playerState = PlayerState.Disabled;
+    }
+}
+
+enum PlayerState
+{
+    Playable, Disabled
 }
