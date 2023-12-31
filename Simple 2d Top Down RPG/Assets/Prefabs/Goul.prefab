@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3606328617579305828}
   - component: {fileID: 1594489078711753022}
   - component: {fileID: 8448519604346966156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Goul
   m_TagString: Untagged
   m_Icon: {fileID: 0}

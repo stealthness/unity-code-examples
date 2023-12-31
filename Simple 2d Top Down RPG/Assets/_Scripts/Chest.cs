@@ -4,12 +4,12 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Chest : MonoBehaviour
+public class Chest :MonoBehaviour
 {
     public Sprite emptyChest;
     public AudioSource PickupCoinSound;
-    private BoxCollider2D boxCollider2D;
     private SpriteRenderer spriteRenderer;
+    private BoxCollider2D box;
 
     private readonly float fadeDuration = 0.5f;
     private readonly int containedGoldAmount = 10;
@@ -17,13 +17,15 @@ public class Chest : MonoBehaviour
 
     public UnityEvent<int> IncreaseWalletGold;
 
+
+    //protected override void Awake()
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         PickupCoinSound = GetComponent<AudioSource>();
-        boxCollider2D = GetComponent<BoxCollider2D>();
-
+        box = GetComponent<BoxCollider2D>();
     }
+
 
 
 
@@ -31,9 +33,9 @@ public class Chest : MonoBehaviour
     {
         if (collision.CompareTag(PlayerController.Tag))
         {
-            Debug.Log("Chest Hit");
+            Debug.Log("<1>Chest Hit");
             collision.GetComponent<Health>().ReduceHealth(10);
-            boxCollider2D.enabled = false;
+            box.enabled = false;
             PickupCoinSound.Play();
             IncreaseWalletGold.Invoke(containedGoldAmount);
             spriteRenderer.sprite = emptyChest;
@@ -41,6 +43,20 @@ public class Chest : MonoBehaviour
         }
     }
 
+/*
+    protected override void OnCollide(Collider2D collider)
+    {
+        if (collider.CompareTag(PlayerController.Tag))
+        {
+            Debug.Log("<2>Chest Hit");
+            collider.GetComponent<Health>().ReduceHealth(10);
+            box.enabled = false;
+            PickupCoinSound.Play();
+            IncreaseWalletGold.Invoke(containedGoldAmount);
+            spriteRenderer.sprite = emptyChest;
+            StartCoroutine(FadeObject());
+        }
+    }*/
 
 
 
