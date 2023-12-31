@@ -29,12 +29,7 @@ public class Portal : MonoBehaviour
         {
             Debug.Log("End of Level");
             OnPlayerTouch.Invoke();
-            Invoke(nameof(LoadMenu), timeOfDelayedMenu);
         }
     }
 
-    private void LoadMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
 }
