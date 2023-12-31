@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     [SerializeField] protected float speed = 1f;
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         box = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
