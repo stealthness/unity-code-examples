@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3606328617579305828}
   - component: {fileID: 1594489078711753022}
   - component: {fileID: 8448519604346966156}
+  - component: {fileID: 3381747580379381344}
   m_Layer: 7
   m_Name: Goul
   m_TagString: Untagged
@@ -189,9 +190,10 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+  startAtIndexPosition: -1
+  nextWayPoint: 0
   _speed: 1
   _forward: 1
-  nextWayPoint: 0
 --- !u!114 &8448519604346966156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,3 +206,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81f44a699d0b534fa71700c5f94766a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3381747580379381344
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372412547015002861}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6f1ddec49ce2ab46b14d8aa1a72d1bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
