@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -7,6 +8,7 @@ public class PlayerMovement : Movement
     private Animator _animator;
     private PlayerController _playerController;
     private RaycastHit2D _hit;
+    private const float FadeDuration = 3f;
 
     protected override void Awake()
     {
@@ -63,4 +65,40 @@ public class PlayerMovement : Movement
         
         return true;
     }
+
+
+    public void FadePlayer()
+    {
+        StartCoroutine(FadeObject());
+    }
+
+    IEnumerator FadeObject()
+    {
+
+        Color startColor = _sr.material.color;
+
+        // Set the target color with initial alpha set to 0
+        Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+
+        // Time elapsed during the fade
+        float currentTime = 0.0f;
+
+        while (currentTime < FadeDuration)
+        {
+
+            currentTime += Time.deltaTime;
+            float lerpFactor = currentTime / FadeDuration;
+            _sr.material.color = Color.Lerp(startColor, targetColor, lerpFactor);
+
+            // Wait for the next frame
+            yield return null;
+        }
+
+        // Ensure the final color is set
+        _sr.material.color = targetColor;
+        Destroy(gameObject);
+
+
+    }
+
 }
