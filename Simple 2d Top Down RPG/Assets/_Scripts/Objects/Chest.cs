@@ -12,7 +12,7 @@ public class Chest : Collidable
 
     [SerializeField] private readonly int _containedGoldAmount = 10;
     [SerializeField] private readonly float _fadeDuration = 0.5f;
-    [SerializeField] private readonly float _timeBeforeChestFades = 5f;
+    [SerializeField] private readonly float _timeBeforeChestFades = 2f;
     public UnityEvent<int> IncreaseWalletGold;
 
 

@@ -158,7 +158,8 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  emptyChest: {fileID: -334334628, guid: 44cd63bf58c1c0d4c92d49cc47374cc7, type: 3}
+  EmptyChestSprite: {fileID: -334334628, guid: 44cd63bf58c1c0d4c92d49cc47374cc7, type: 3}
+  PickupCoinSoundClip: {fileID: 6138959992001922409}
   IncreaseWalletGold:
     m_PersistentCalls:
       m_Calls:
