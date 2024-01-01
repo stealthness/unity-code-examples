@@ -7,6 +7,7 @@ public class Collidable : MonoBehaviour
     public ContactFilter2D ContactFilter;
 
     protected BoxCollider2D _box;
+    protected bool _isCollidable = true;
     private readonly Collider2D[] _hits = new Collider2D[10];
 
 
@@ -19,6 +20,12 @@ public class Collidable : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (!_isCollidable)
+        {
+            return;
+        }
+
+
         _box.OverlapCollider(ContactFilter, _hits);
         for(int i  = 0; i < _hits.Length; i++)
         {

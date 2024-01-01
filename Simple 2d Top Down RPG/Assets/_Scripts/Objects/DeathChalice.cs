@@ -11,6 +11,7 @@ public class DeathChalice : Collidable
         if (collider.CompareTag("Player"))
         {
             Debug.Log("Player Hit death Chalice");
+            _isCollidable = false;
             OnTouch.Invoke();
         }
     }

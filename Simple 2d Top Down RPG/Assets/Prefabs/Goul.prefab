@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8696491726342658011}
   - component: {fileID: 7047605626521483276}
   - component: {fileID: 1245141002391310882}
-  - component: {fileID: 4681120627064476852}
   - component: {fileID: 3606328617579305828}
   - component: {fileID: 1594489078711753022}
   - component: {fileID: 8448519604346966156}
@@ -135,33 +134,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &4681120627064476852
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372412547015002861}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &3606328617579305828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762746bab059cbf4abcdf10fc071913b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  _speed: 1
+  _isDisableMovement: 0
 --- !u!114 &1594489078711753022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,10 +163,11 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  startAtIndexPosition: -1
-  nextWayPoint: 0
+  _startAtIndexPosition: -1
+  _nextWayPoint: 0
   _speed: 1
   _forward: 1
+  _isDisableMovement: 0
 --- !u!114 &8448519604346966156
 MonoBehaviour:
   m_ObjectHideFlags: 0

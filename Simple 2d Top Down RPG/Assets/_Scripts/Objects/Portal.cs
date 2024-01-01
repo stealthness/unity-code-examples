@@ -1,32 +1,34 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class Portal : MonoBehaviour
+public class Portal : Collidable
 {
     public UnityEvent OnPlayerTouch;
 
-    private BoxCollider2D _box;
-    private Rigidbody2D rb;
 
-
-
-    private void Awake()
+    protected override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Static;
-        _box = GetComponent<BoxCollider2D>();
+        base.Awake();
         _box.isTrigger = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+
+    protected override void OnCollide(Collider2D collider)
     {
-        if (collision.CompareTag("Player"))
+        if (!_isCollidable)
         {
-            Debug.Log("End of Level");
+            return;
+        }
+
+        if (collider.CompareTag("Player"))
+        {
+            Debug.Log("Player Hit Portal");
+            _isCollidable = false;
             OnPlayerTouch.Invoke();
         }
     }
+
 
 }
