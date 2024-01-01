@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     internal SpriteRenderer sr;
 
     [SerializeField] protected float speed = 1f;
+    [SerializeField] protected bool isDisableMovement = false;
 
 
     protected virtual void Awake()
@@ -25,6 +26,11 @@ public class Movement : MonoBehaviour
 
     protected void MoveDir(Vector2 dir)
     {
+        if (isDisableMovement)
+        {
+            return;
+        }
+
         transform.Translate(Time.deltaTime * dir * speed);
         CheckFlipSprite(dir);
     }
@@ -45,5 +51,10 @@ public class Movement : MonoBehaviour
             sr.flipX = false;
         }
         // dir.x == 0 do nougthing
+    }
+
+    public void OnDisableMovement()
+    {
+        isDisableMovement = true;
     }
 }

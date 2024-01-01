@@ -52,6 +52,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MaskedGhoul PathRepeater
       objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3388772602052911500}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDisableMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ObjectPathRepeater, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -82,3 +98,4 @@ MonoBehaviour:
   nextWayPoint: 0
   _speed: 1
   _forward: 1
+  isDisableMovement: 0

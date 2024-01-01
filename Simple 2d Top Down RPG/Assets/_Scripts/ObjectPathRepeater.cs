@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPathRepeater : MonoBehaviour
@@ -11,6 +9,7 @@ public class ObjectPathRepeater : MonoBehaviour
     [SerializeField] private int nextWayPoint = 0;
     [SerializeField] private float _speed = 1f;
     [SerializeField] private bool _forward = true;
+    [SerializeField] protected bool isDisableMovement = false;
 
     private readonly float TOL = 0.01f;
     private Vector3 _dir;
@@ -62,6 +61,12 @@ public class ObjectPathRepeater : MonoBehaviour
     void Update()
     {
 
+        if (isDisableMovement)
+        {
+            return;
+        }
+
+
         if (Vector2.Distance(transform.position, waypoints[nextWayPoint].transform.position) < TOL)
         {
             if (_forward)
@@ -96,5 +101,10 @@ public class ObjectPathRepeater : MonoBehaviour
             transform.Translate(_speed * Time.deltaTime * _dir);
         }
     }
-     
+
+
+    public void OnDisableMovement()
+    {
+        isDisableMovement = true;
+    }
 }
