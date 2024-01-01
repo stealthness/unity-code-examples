@@ -159,7 +159,6 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   emptyChest: {fileID: -334334628, guid: 44cd63bf58c1c0d4c92d49cc47374cc7, type: 3}
-  PickupCoinSound: {fileID: 6138959992001922409}
   IncreaseWalletGold:
     m_PersistentCalls:
       m_Calls:
@@ -167,6 +166,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Wallet, Assembly-CSharp
         m_MethodName: AddGold
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6138959992001922409}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

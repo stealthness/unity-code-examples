@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void EndOfLevelReached()
     {
-        Debug.Log("GM: End of level Reached -> back to main menu in 3 secs");
+        Debug.Log($"GM: End of level Reached -> back to main menu in {DelayedMenuTimer} secs");
         Invoke(nameof(LoadMenu), DelayedMenuTimer);
     }
 

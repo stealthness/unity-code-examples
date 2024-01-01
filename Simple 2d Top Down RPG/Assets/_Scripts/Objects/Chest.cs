@@ -6,23 +6,22 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Chest : Collidable
 {
-    public Sprite emptyChest;
-    public AudioSource PickupCoinSound;
-    private SpriteRenderer spriteRenderer;
+    public Sprite EmptyChestSprite;
+    public AudioSource PickupCoinSoundClip;
+    private SpriteRenderer _spriteRenderer;
 
-    private readonly float fadeDuration = 0.5f;
-    private readonly int containedGoldAmount = 10;
-
-
+    [SerializeField] private readonly int _containedGoldAmount = 10;
+    [SerializeField] private readonly float _fadeDuration = 0.5f;
+    [SerializeField] private readonly float _timeBeforeChestFades = 5f;
     public UnityEvent<int> IncreaseWalletGold;
 
 
-    //protected override void Awake()
+
     protected override void Awake()
     {
         base.Awake();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        PickupCoinSound = GetComponent<AudioSource>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        PickupCoinSoundClip = GetComponent<AudioSource>();
     }
 
 
@@ -39,20 +38,23 @@ public class Chest : Collidable
             Debug.Log("<1>Chest Hit");
             collider.GetComponent<Health>().ReduceHealth(10);
             _box.enabled = false;
-            PickupCoinSound.Play();
-            IncreaseWalletGold.Invoke(containedGoldAmount);
-            spriteRenderer.sprite = emptyChest;
-            StartCoroutine(FadeObject());
+            PickupCoinSoundClip.Play();
+            IncreaseWalletGold.Invoke(_containedGoldAmount);
+            _spriteRenderer.sprite = EmptyChestSprite;
+            Invoke(nameof(FadeChest), _timeBeforeChestFades);
         }
     }
 
-
+    private void FadeChest()
+    {
+        StartCoroutine(FadeObject());
+    }
 
 
     IEnumerator FadeObject()
     {
  
-        Color startColor = spriteRenderer.material.color;
+        Color startColor = _spriteRenderer.material.color;
 
         // Set the target color with initial alpha set to 0
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
@@ -60,19 +62,19 @@ public class Chest : Collidable
         // Time elapsed during the fade
         float currentTime = 0.0f;
 
-        while (currentTime < fadeDuration)
+        while (currentTime < _fadeDuration)
         {
 
             currentTime += Time.deltaTime;
-            float lerpFactor = currentTime / fadeDuration;
-            spriteRenderer.material.color = Color.Lerp(startColor, targetColor, lerpFactor);
+            float lerpFactor = currentTime / _fadeDuration;
+            _spriteRenderer.material.color = Color.Lerp(startColor, targetColor, lerpFactor);
 
             // Wait for the next frame
             yield return null;
         }
 
         // Ensure the final color is set
-        spriteRenderer.material.color = targetColor;
+        _spriteRenderer.material.color = targetColor;
         Destroy(gameObject);
 
 
