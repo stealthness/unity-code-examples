@@ -5,23 +5,24 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class NPCMaskedGhoul : Collidable
 {
-    private const float DelayedDestructionTimer = 3f;
-    private AudioSource audioSource;
-    private Animator animator;
     public UnityEvent OnTouch;
-    private bool isAlive = true;
+
+    private const float DelayedDestructionTimer = 3f;
+    private bool _isAlive = true;
+    private AudioSource _audioSource;
+    private Animator _animator;
 
     protected override void Awake()
     {
         base.Awake();
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
     }
 
 
     protected override void OnCollide(Collider2D collider)
     {
-        if (!isAlive)
+        if (!_isAlive)
         {
             return;
         }
@@ -29,9 +30,9 @@ public class NPCMaskedGhoul : Collidable
         if (collider.CompareTag("Player"))
         {
             Debug.Log("Player Hit Masked Ghoul");
-            isAlive = false;
-            animator.SetTrigger("OnMelt");
-            audioSource.Play();
+            _isAlive = false;
+            _animator.SetTrigger("OnMelt");
+            _audioSource.Play();
             OnTouch.Invoke();
             Invoke(nameof(DelayedDestroyed), DelayedDestructionTimer);
         }

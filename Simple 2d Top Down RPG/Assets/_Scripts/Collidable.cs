@@ -4,32 +4,32 @@ using UnityEngine;
 public class Collidable : MonoBehaviour
 {
     [Tooltip("Layers that will be checked for collisions")]
-    public ContactFilter2D contactFilter;
+    public ContactFilter2D ContactFilter;
 
-    protected BoxCollider2D box;
-    private Collider2D[] hits = new Collider2D[10];
+    protected BoxCollider2D _box;
+    private readonly Collider2D[] _hits = new Collider2D[10];
 
 
     protected virtual void Awake()
     {
-        box = GetComponent<BoxCollider2D>();
+        _box = GetComponent<BoxCollider2D>();
     }
 
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        box.OverlapCollider(contactFilter, hits);
-        for(int i  = 0; i < hits.Length; i++)
+        _box.OverlapCollider(ContactFilter, _hits);
+        for(int i  = 0; i < _hits.Length; i++)
         {
-            if (hits[i] == null)
+            if (_hits[i] == null)
             {
                 continue;
             }
             //Debug.Log($"{i}: {hits[i].name}");
-            OnCollide(hits[i]);
+            OnCollide(_hits[i]);
             
-            hits[i] = null;
+            _hits[i] = null;
         }
     }
 

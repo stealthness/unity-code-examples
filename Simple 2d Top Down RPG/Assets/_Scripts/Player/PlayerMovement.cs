@@ -3,34 +3,34 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerMovement : Movement
 {
-    private Animator animator;
-    private PlayerController playerController;
-    private RaycastHit2D hit;
-    [SerializeField] string[] layers = new string[] { "Blocking" };
+    [SerializeField] private string[] _layers = new string[] { "Blocking" };
+    private Animator _animator;
+    private PlayerController _playerController;
+    private RaycastHit2D _hit;
 
     protected override void Awake()
     {
         base.Awake();
-        animator = GetComponent<Animator>();
-        playerController = GetComponent<PlayerController>();
+        _animator = GetComponent<Animator>();
+        _playerController = GetComponent<PlayerController>();
     }
 
      private void Start()
     {
-        speed = 5f;
+        _speed = 5f;
     }
 
     private void Update()
     {
-        Vector2 dir = playerController.MoveDir;
-        if (playerController.MoveDir != Vector2.zero && CheckMove(dir)) 
+        Vector2 dir = _playerController.MoveDir;
+        if (_playerController.MoveDir != Vector2.zero && CheckMove(dir)) 
         {
-            animator.SetBool("IsMoving", true);
+            _animator.SetBool("IsMoving", true);
             MoveDir(dir);
         }
         else
         {
-            animator.SetBool("IsMoving", false);
+            _animator.SetBool("IsMoving", false);
         }
     }
 
@@ -41,11 +41,11 @@ public class PlayerMovement : Movement
     /// <returns></returns>
     private bool CheckMove(Vector2 dir)
     {
-        int layerMasks = LayerMask.GetMask(layers);
+        int layerMasks = LayerMask.GetMask(_layers);
         if (Mathf.Abs(dir.y) > 0)
         {
-            hit = Physics2D.BoxCast(transform.position, ((BoxCollider2D)box).size, 0, new Vector2(0, dir.y), Mathf.Abs(dir.y * Time.deltaTime * speed), layerMasks);
-            if (hit.collider != null)
+            _hit = Physics2D.BoxCast(transform.position, ((BoxCollider2D)_box).size, 0, new Vector2(0, dir.y), Mathf.Abs(dir.y * Time.deltaTime * _speed), layerMasks);
+            if (_hit.collider != null)
             {
                 return false;
             }
@@ -53,8 +53,8 @@ public class PlayerMovement : Movement
         
         if (Mathf.Abs(dir.x) > 0)
         {
-            hit = Physics2D.BoxCast(transform.position, ((BoxCollider2D)box).size, 0, new Vector2(dir.x, 0), Mathf.Abs(dir.x * Time.deltaTime * speed), layerMasks);
-            if (hit.collider != null)
+            _hit = Physics2D.BoxCast(transform.position, ((BoxCollider2D)_box).size, 0, new Vector2(dir.x, 0), Mathf.Abs(dir.x * Time.deltaTime * _speed), layerMasks);
+            if (_hit.collider != null)
             {
                 return false;
             }

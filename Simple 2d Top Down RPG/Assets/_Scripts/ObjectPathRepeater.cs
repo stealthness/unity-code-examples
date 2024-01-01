@@ -5,18 +5,18 @@ public class ObjectPathRepeater : MonoBehaviour
 
     public GameObject[] waypoints;
 
-    [SerializeField] private int startAtIndexPosition = -1;
-    [SerializeField] private int nextWayPoint = 0;
+    [SerializeField] private int _startAtIndexPosition = -1;
+    [SerializeField] private int _nextWayPoint = 0;
     [SerializeField] private float _speed = 1f;
     [SerializeField] private bool _forward = true;
-    [SerializeField] protected bool isDisableMovement = false;
+    [SerializeField] protected bool _isDisableMovement = false;
 
     private readonly float TOL = 0.01f;
     private Vector3 _dir;
 
     void Start()
     {
-        if (startAtIndexPosition < 0)
+        if (_startAtIndexPosition < 0)
         {
             // stats at the current position and heads to nextWayPoint
             return;
@@ -25,30 +25,30 @@ public class ObjectPathRepeater : MonoBehaviour
         
         if (_forward)
         {
-            if (startAtIndexPosition < waypoints.Length - 1)
+            if (_startAtIndexPosition < waypoints.Length - 1)
             {
-                transform.position = waypoints[startAtIndexPosition].transform.position;
-                nextWayPoint = startAtIndexPosition + 1; ;
+                transform.position = waypoints[_startAtIndexPosition].transform.position;
+                _nextWayPoint = _startAtIndexPosition + 1; ;
             }
             else // if startAtIndexPosition is at the end then direction is reversed
             {
-                transform.position = waypoints[startAtIndexPosition].transform.position;
+                transform.position = waypoints[_startAtIndexPosition].transform.position;
                 _forward = false;
-                nextWayPoint = startAtIndexPosition - 1;
+                _nextWayPoint = _startAtIndexPosition - 1;
             }
         }
         else
         {
-            if (startAtIndexPosition > 0)
+            if (_startAtIndexPosition > 0)
             {
-                transform.position = waypoints[startAtIndexPosition].transform.position;
-                nextWayPoint = startAtIndexPosition - 1; ;
+                transform.position = waypoints[_startAtIndexPosition].transform.position;
+                _nextWayPoint = _startAtIndexPosition - 1; ;
             }
             else // if startAtIndexPosition is at the start then direction is reversed
             {
                 transform.position = waypoints[0].transform.position;
                 _forward = true;
-                nextWayPoint = 1;
+                _nextWayPoint = 1;
             }
         }
     }
@@ -59,43 +59,43 @@ public class ObjectPathRepeater : MonoBehaviour
     void Update()
     {
 
-        if (isDisableMovement)
+        if (_isDisableMovement)
         {
             return;
         }
 
 
-        if (Vector2.Distance(transform.position, waypoints[nextWayPoint].transform.position) < TOL)
+        if (Vector2.Distance(transform.position, waypoints[_nextWayPoint].transform.position) < TOL)
         {
             if (_forward)
             {
-                if (nextWayPoint == waypoints.Length - 1)
+                if (_nextWayPoint == waypoints.Length - 1)
                 {
-                    nextWayPoint--;
+                    _nextWayPoint--;
                     _forward = false;
                 }
                 else
                 {
-                    nextWayPoint++;
+                    _nextWayPoint++;
                 }
             }
             else
             {
 
-                if (nextWayPoint == 0)
+                if (_nextWayPoint == 0)
                 {
                     _forward = true;
-                    nextWayPoint++;
+                    _nextWayPoint++;
                 }
                 else
                 {
-                    nextWayPoint--;
+                    _nextWayPoint--;
                 }
             }
         }
         else
         {
-            _dir = (waypoints[nextWayPoint].transform.position - transform.position).normalized;
+            _dir = (waypoints[_nextWayPoint].transform.position - transform.position).normalized;
             transform.Translate(_speed * Time.deltaTime * _dir);
         }
     }
@@ -105,6 +105,6 @@ public class ObjectPathRepeater : MonoBehaviour
     /// </summary>
     public void OnDisableMovement()
     {
-        isDisableMovement = true;
+        _isDisableMovement = true;
     }
 }

@@ -5,30 +5,30 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Movement : MonoBehaviour
 {
-    internal Collider2D box;
+    internal Collider2D _box;
+    internal SpriteRenderer _sr;
     Rigidbody2D rb;
-    internal SpriteRenderer sr;
 
-    [SerializeField] protected float speed = 1f;
-    [SerializeField] protected bool isDisableMovement = false;
+    [SerializeField] protected float _speed = 1f;
+    [SerializeField] protected bool _isDisableMovement = false;
 
 
     protected virtual void Awake()
     {
-        box = GetComponent<Collider2D>();
+        _box = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        _sr = GetComponent<SpriteRenderer>();
     }
 
 
     protected void MoveDir(Vector2 dir)
     {
-        if (isDisableMovement)
+        if (_isDisableMovement)
         {
             return;
         }
 
-        transform.Translate(Time.deltaTime * dir * speed);
+        transform.Translate(Time.deltaTime * dir * _speed);
         CheckFlipSprite(dir);
     }
 
@@ -41,17 +41,17 @@ public class Movement : MonoBehaviour
         // flip sprite if moving to left
         if (dir.x < 0)
         {
-            sr.flipX = true;
+            _sr.flipX = true;
         }
         if (dir.x > 0)
         {
-            sr.flipX = false;
+            _sr.flipX = false;
         }
         // dir.x == 0 do nougthing
     }
 
     public void OnDisableMovement()
     {
-        isDisableMovement = true;
+        _isDisableMovement = true;
     }
 }
