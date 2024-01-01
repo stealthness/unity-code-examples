@@ -1,13 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class Movement : MonoBehaviour
 {
     internal Collider2D _box;
     internal SpriteRenderer _sr;
-    Rigidbody2D rb;
 
     [SerializeField] protected float _speed = 1f;
     [SerializeField] protected bool _isDisableMovement = false;
@@ -16,7 +14,6 @@ public class Movement : MonoBehaviour
     protected virtual void Awake()
     {
         _box = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
     }
 
