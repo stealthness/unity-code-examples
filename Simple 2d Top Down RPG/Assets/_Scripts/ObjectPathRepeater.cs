@@ -50,9 +50,7 @@ public class ObjectPathRepeater : MonoBehaviour
                 _forward = true;
                 nextWayPoint = 1;
             }
-
         }
-
     }
 
 
@@ -102,7 +100,9 @@ public class ObjectPathRepeater : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Diasble the the Object from moving
+    /// </summary>
     public void OnDisableMovement()
     {
         isDisableMovement = true;

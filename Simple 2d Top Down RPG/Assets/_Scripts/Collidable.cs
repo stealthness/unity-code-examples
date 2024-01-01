@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Collidable : MonoBehaviour
 {
-
+    [Tooltip("Layers that will be checked for collisions")]
     public ContactFilter2D contactFilter;
+
     protected BoxCollider2D box;
     private Collider2D[] hits = new Collider2D[10];
 
@@ -16,12 +15,6 @@ public class Collidable : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
     }
 
-
-    // Start is called before the first frame update
-    protected virtual void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     protected virtual void Update()

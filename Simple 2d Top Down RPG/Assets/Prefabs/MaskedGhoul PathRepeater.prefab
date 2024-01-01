@@ -53,7 +53,15 @@ PrefabInstance:
       value: MaskedGhoul PathRepeater
       objectReference: {fileID: 0}
     - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
       propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
@@ -61,12 +69,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3388772602052911500}
     - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
       propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnDisableMovement
       objectReference: {fileID: 0}
     - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
       propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ObjectPathRepeater, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ObjectPathRepeater, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106355604015042331, guid: 3a5b713a23497144c90c4c9bd6244ee4, type: 3}
+      propertyPath: OnTouch.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
