@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class NPCMaskedGhoul : Collidable
 {
+    private const float DelayedDestructionTimer = 3f;
     private AudioSource audioSource;
     private Animator animator;
     public UnityEvent OnTouch;
@@ -33,7 +34,7 @@ public class NPCMaskedGhoul : Collidable
             animator.SetTrigger("OnMelt");
             audioSource.Play();
             OnTouch.Invoke();
-            Invoke(nameof(DelayedDestroyed), 3f);
+            Invoke(nameof(DelayedDestroyed), DelayedDestructionTimer);
         }
     }
 
