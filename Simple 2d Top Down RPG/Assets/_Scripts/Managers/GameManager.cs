@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public void EndOfLevelReached()
     {
         Debug.Log("GM: End of level Reached -> back to main menu in 3 secs");
-        Invoke(nameof(LoadMenu), DelayedMenuTimer;
+        Invoke(nameof(LoadMenu), DelayedMenuTimer);
     }
 
     private void LoadMenu()
