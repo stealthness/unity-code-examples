@@ -54,11 +54,6 @@ public class PlayerMovement : Movement
         
         if (Mathf.Abs(dir.x) > 0)
         {
-            Debug.Log($"<PM:CH: {dir}, {layerMasks}");
-            if (box == null)
-            {
-                Debug.Log("box is null");
-            }
             hit = Physics2D.BoxCast(transform.position, ((BoxCollider2D)box).size, 0, new Vector2(dir.x, 0), Mathf.Abs(dir.x * Time.deltaTime * speed), layerMasks);
             if (hit.collider != null)
             {
