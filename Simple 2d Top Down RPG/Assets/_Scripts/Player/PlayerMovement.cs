@@ -61,7 +61,6 @@ public class PlayerMovement : Movement
                 return false;
             }
         }
-
         
         return true;
     }

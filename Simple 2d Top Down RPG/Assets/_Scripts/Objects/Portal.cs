@@ -2,17 +2,45 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Animator))]
 public class Portal : Collidable
 {
     public UnityEvent OnPlayerTouch;
+    public bool IsIdleDefault = true;
+    public bool IsIdlePulse = false;
+    public bool IsIdleObit = false;
+
+    private Animator _animator;
 
 
     protected override void Awake()
     {
         base.Awake();
         _box.isTrigger = true;
+        _animator = GetComponent<Animator>();
     }
 
+
+    private void Start()
+    {
+
+        if (IsIdlePulse)
+        {
+            Debug.Log("Portal: Start: IsIdlePulse");
+            _animator.SetBool("IsIdlePulsing", true);
+        }
+        else if (IsIdleObit)
+        {
+            Debug.Log("Portal: Start: IsIdleObit");
+            _animator.SetBool("IsIdleOrbit", true);
+        }
+        else
+        {
+            Debug.Log("Portal: Start: IsIdleDefault");
+            _animator.SetBool("IsIdlePulsing", false);
+            _animator.SetBool("IsIdleOrbit", false);
+        }
+    }
 
 
     protected override void OnCollide(Collider2D collider)
@@ -30,5 +58,16 @@ public class Portal : Collidable
         }
     }
 
+    protected override void OnCollideEnter(Collider2D collider)
+    {
+        base.OnCollideEnter(collider);
 
+        Debug.Log("Portal: OnCollideEnter");
+    }
+    protected override void OnCollideExit(Collider2D collider)
+    {
+        base.OnCollideExit(collider);
+
+        Debug.Log("Portal: OnCollideExit");
+    }
 }
