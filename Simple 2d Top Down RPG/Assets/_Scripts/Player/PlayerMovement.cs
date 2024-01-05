@@ -1,14 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Player Movement class is extension of Movement class
+/// </summary>
 [RequireComponent(typeof(Animator))]
 public class PlayerMovement : Movement
 {
     [SerializeField] private string[] _layers = new string[] { "Blocking" };
+    private const float FadeDuration = 3f;
     private Animator _animator;
     private PlayerController _playerController;
     private RaycastHit2D _hit;
-    private const float FadeDuration = 3f;
     private Vector2 _moveDir;
 
     protected override void Awake()
