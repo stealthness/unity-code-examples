@@ -31,4 +31,13 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void LoadLevel(string levelName)
+    {
+        if (levelName == null)
+        {
+            SceneManager.LoadScene(0);
+        }
+        SceneManager.LoadScene(levelName);
+    }
 }

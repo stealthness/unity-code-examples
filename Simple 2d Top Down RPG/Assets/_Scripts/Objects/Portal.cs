@@ -26,17 +26,14 @@ public class Portal : Collidable
 
         if (IsIdlePulse)
         {
-            Debug.Log("Portal: Start: IsIdlePulse");
             _animator.SetBool("IsIdlePulsing", true);
         }
         else if (IsIdleObit)
         {
-            Debug.Log("Portal: Start: IsIdleObit");
             _animator.SetBool("IsIdleOrbit", true);
         }
         else
         {
-            Debug.Log("Portal: Start: IsIdleDefault");
             _animator.SetBool("IsIdlePulsing", false);
             _animator.SetBool("IsIdleOrbit", false);
         }
