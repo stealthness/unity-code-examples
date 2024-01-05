@@ -55,7 +55,7 @@ public class Portal : Collidable
         }
     }
 
-    protected override void OnCollideEnter(Collider2D collider)
+/*    protected override void OnCollideEnter(Collider2D collider)
     {
         base.OnCollideEnter(collider);
 
@@ -66,5 +66,5 @@ public class Portal : Collidable
         base.OnCollideExit(collider);
 
         Debug.Log("Portal: OnCollideExit");
-    }
+    }*/
 }
