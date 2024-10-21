@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     public Transform topLimit;
     public Transform bottomLimit;
@@ -15,26 +14,25 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.bodyType = RigidbodyType2D.Kinematic;
     }
+    
 
-    private void Update()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        var y = Input.GetAxis("Vertical");
-        if (y > 0 && transform.position.y < topLimit.position.y)
+        
+        var y = transform.position.y;
+        if (y <= topLimit.position.y && y >= bottomLimit.position.y)
         {
-            transform.Translate(playerSpeed * y * Time.deltaTime * Vector3.up);
+            _rb.linearVelocityY = playerSpeed * context.ReadValue<Vector2>().y;
         }
-        if (y < 0 && transform.position.y > bottomLimit.position.y)
+        else
         {
-            transform.Translate(playerSpeed * y * Time.deltaTime * Vector3.up);
+            _rb.linearVelocityY = 0f;
         }
-
-
     }
-
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Collidable"))
