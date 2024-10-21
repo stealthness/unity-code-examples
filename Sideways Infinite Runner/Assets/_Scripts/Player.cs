@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D _rb;
 
+    public GameObject explosion;
     public Transform topLimit;
     public Transform bottomLimit;
     [SerializeField] private float playerSpeed = 5f;
@@ -38,8 +40,13 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Collidable"))
         {
             Debug.Log("Ouch");
-            Time.timeScale = 0f;
+            explosion.SetActive(true);
+            explosion.transform.position = transform.position;
+            
+            Destroy(this);
         }
     }
+    
+    
 
 }
