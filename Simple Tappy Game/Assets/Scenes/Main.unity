@@ -820,7 +820,7 @@ MonoBehaviour:
   startFirstPillerTime: 0
   repeatNextPillerTime: 2
   pillerSpeed: 3
-  gapHeight: 2
+  gapHeight: 4
 --- !u!1 &1279188846
 GameObject:
   m_ObjectHideFlags: 0
