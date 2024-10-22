@@ -10,8 +10,9 @@ namespace _Scripts
         public GameObject player;
     
         private GameState _gameState;
-    
-    
+        private int _score;
+
+
         private void Awake()
         {
             if (Instance == null)
@@ -45,7 +46,11 @@ namespace _Scripts
                 SceneManager.LoadScene(0);
             }
         }
-    
+
+        public void addScore(int scoreTAdd)
+        {
+            _score += scoreTAdd;
+        }
     }
     
     enum GameState

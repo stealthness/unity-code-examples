@@ -49,6 +49,10 @@ namespace _Scripts
                 CollidableManager.Instance.StopSpawning();
                 GameManager.Instance.EndGame();
                 Destroy(collision);
+            } else if (collision.CompareTag("Coin"))
+            {
+                GameManager.Instance.addScore(10);
+                Destroy(collision);
             }
         }
 

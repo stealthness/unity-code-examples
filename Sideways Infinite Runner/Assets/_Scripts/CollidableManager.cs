@@ -9,7 +9,8 @@ namespace _Scripts
     
         public Transform topLimit;
         public Transform bottomLimit;
-        public GameObject collidableObjectPrefab;
+        public GameObject minePrefab;
+        public GameObject coinPrefab;
     
         [SerializeField] private float minFrequencyTime = 0.1f;
         [SerializeField] private float maxFrequencyTime = 2f;
@@ -30,16 +31,27 @@ namespace _Scripts
         // Start is called before the first frame update
         void Start()
         {
-            Invoke(nameof(CreateCollidableObject), 0f);
+            Invoke(nameof(CreateMine), 0f);
+            Invoke(nameof(CreateCoin), 1f);
+        }
+
+        private float GetRandomYValue()
+        {
+            return Random.Range(bottomLimit.position.y, topLimit.position.y);
+        }
+
+        private void CreateCoin()
+        {
+            Instantiate(coinPrefab, new Vector3(topLimit.position.x, GetRandomYValue(), 0), Quaternion.identity);
+            float timeToNextCollidableObject = Random.Range(minFrequencyTime, maxFrequencyTime);
+            Invoke(nameof(CreateCoin), timeToNextCollidableObject);
         }
     
-    
-        void CreateCollidableObject()
+        private void CreateMine()
         {
-            var y = Random.Range(bottomLimit.position.y, topLimit.position.y);
-            Instantiate(collidableObjectPrefab, new Vector3(topLimit.position.x, y, 0), Quaternion.identity);
+            Instantiate(minePrefab, new Vector3(topLimit.position.x, GetRandomYValue(), 0), Quaternion.identity);
             float timeToNextCollidableObject = Random.Range(minFrequencyTime, maxFrequencyTime);
-            Invoke(nameof(CreateCollidableObject), timeToNextCollidableObject);
+            Invoke(nameof(CreateMine), timeToNextCollidableObject);
         }
     
         /// <summary>
@@ -65,7 +77,8 @@ namespace _Scripts
         /// </summary>
         public void StopSpawning()
         {
-            Instance.CancelInvoke(nameof(CreateCollidableObject));
+            CancelInvoke(nameof(CreateMine));
+            CancelInvoke(nameof(CreateCoin));
         }
     }
 
