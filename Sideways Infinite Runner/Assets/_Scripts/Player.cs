@@ -1,5 +1,6 @@
 using System;
 using _Script;
+using _Scripts;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
             explosion.SetActive(true);
             explosion.transform.position = transform.position;
             CollidableManager.Instance.StopSpawning();
+            GameManager.Instance.EndGame();
             Destroy(this);
         }
     }
