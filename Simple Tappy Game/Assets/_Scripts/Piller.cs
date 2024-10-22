@@ -23,6 +23,6 @@ public class Piller : MonoBehaviour
 
         rb.gravityScale = 0f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        rb.velocity = new Vector3(-pillerSpeed, 0, 0);
+        rb.linearVelocity = new Vector3(-pillerSpeed, 0, 0);
     }
 }

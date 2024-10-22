@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace _Scripts
 {
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(CircleCollider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
     public class CollidableObject : MonoBehaviour
     {
     
-        private BoxCollider2D _box;
+        private CircleCollider2D _circleCollider;
         private Rigidbody2D _rb;
     
         [SerializeField] private float speed = 5f;
@@ -17,8 +17,13 @@ namespace _Scripts
         {
             _rb = GetComponent<Rigidbody2D>();
             _rb.bodyType = RigidbodyType2D.Kinematic;
-            _box = GetComponent<BoxCollider2D>();
-            _box.isTrigger = true;
+            _circleCollider = GetComponent<CircleCollider2D>();
+            _circleCollider.isTrigger = true;
+            _rb.linearVelocityX = -speed;
+        }
+
+        private void Start()
+        {
             _rb.linearVelocityX = -speed;
         }
     }

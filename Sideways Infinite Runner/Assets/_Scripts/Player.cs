@@ -41,18 +41,18 @@ namespace _Scripts
         
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Collidable"))
+            if (collision.CompareTag("Mine"))
             {
                 Debug.Log("Ouch");
                 explosion.SetActive(true);
                 explosion.transform.position = transform.position;
                 CollidableManager.Instance.StopSpawning();
                 GameManager.Instance.EndGame();
-                Destroy(collision);
+                Destroy(collision.GetComponentInParent<GameObject>());
             } else if (collision.CompareTag("Coin"))
             {
                 GameManager.Instance.addScore(10);
-                Destroy(collision);
+                collision.gameObject.SetActive(false);
             }
         }
 

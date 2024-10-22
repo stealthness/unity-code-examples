@@ -5936,7 +5936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topLimit: {fileID: 866297205}
   bottomLimit: {fileID: 1185963410}
-  collidableObjectPrefab: {fileID: 425344004167423018, guid: 61e7e10e892dfdd4a95e9b7930236fa8, type: 3}
+  minePrefab: {fileID: 425344004167423018, guid: 61e7e10e892dfdd4a95e9b7930236fa8, type: 3}
   coinPrefab: {fileID: 2929033261386577858, guid: f6b442704ad6d744c8cd6fe8c6f45026, type: 3}
   minFrequencyTime: 0.1
   maxFrequencyTime: 2
