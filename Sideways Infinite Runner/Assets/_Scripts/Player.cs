@@ -1,4 +1,5 @@
 using System;
+using _Script;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour
     public GameObject explosion;
     public Transform topLimit;
     public Transform bottomLimit;
-    [SerializeField] private float playerSpeed = 5f;
+    [SerializeField] private float playerSpeed = 3f;
 
 
     private void Awake()
@@ -61,7 +62,7 @@ public class Player : MonoBehaviour
             Debug.Log("Ouch");
             explosion.SetActive(true);
             explosion.transform.position = transform.position;
-            
+            CollidableManager.Instance.StopSpawning();
             Destroy(this);
         }
     }

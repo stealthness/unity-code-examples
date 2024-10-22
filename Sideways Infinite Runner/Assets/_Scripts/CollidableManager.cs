@@ -65,7 +65,7 @@ namespace _Script
         /// </summary>
         public void StopSpawning()
         {
-            CancelInvoke(nameof(CreateCollidableObject));
+            Instance.CancelInvoke(nameof(CreateCollidableObject));
         }
     }
 
