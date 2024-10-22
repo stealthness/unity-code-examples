@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace _Script
+namespace _Scripts
 {
     public class CollidableManager : MonoBehaviour
     {

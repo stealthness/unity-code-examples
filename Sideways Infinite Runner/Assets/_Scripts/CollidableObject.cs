@@ -1,29 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
-public class CollidableObject : MonoBehaviour
+namespace _Scripts
 {
-
-    private BoxCollider2D box;
-    private Rigidbody2D rb;
-
-    [SerializeField] private float speed = 5f;
-
-    private void Awake()
+    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class CollidableObject : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        box = GetComponent<BoxCollider2D>();
-        box.isTrigger = true;
+    
+        private BoxCollider2D _box;
+        private Rigidbody2D _rb;
+    
+        [SerializeField] private float speed = 5f;
+    
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+            _box = GetComponent<BoxCollider2D>();
+            _box.isTrigger = true;
+        }
+    
+        private void Update()
+        {
+            transform.Translate(Time.deltaTime * speed * Vector3.left);
+        }
     }
-
-    private void Update()
-    {
-        transform.Translate(Time.deltaTime * speed * Vector3.left);
-    }
-
-
 }
+

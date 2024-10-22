@@ -1,7 +1,4 @@
-using System;
-using _Script;
 using _Scripts;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
