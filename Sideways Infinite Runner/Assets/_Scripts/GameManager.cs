@@ -7,6 +7,7 @@ namespace _Scripts
     {
     
         public static GameManager Instance;
+        public GameObject player;
     
         private GameState _gameState;
     
@@ -32,6 +33,7 @@ namespace _Scripts
     
         public void EndGame()
         {
+            Destroy(player);
             _gameState = GameState.ENDED;
         }
     

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts
@@ -18,11 +19,7 @@ namespace _Scripts
             _rb.bodyType = RigidbodyType2D.Kinematic;
             _box = GetComponent<BoxCollider2D>();
             _box.isTrigger = true;
-        }
-    
-        private void Update()
-        {
-            transform.Translate(Time.deltaTime * speed * Vector3.left);
+            _rb.linearVelocityX = -speed;
         }
     }
 }
