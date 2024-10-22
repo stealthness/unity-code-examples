@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,15 +20,33 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _rb.bodyType = RigidbodyType2D.Kinematic;
     }
-    
+
+    private void Update()
+    {
+        
+        var y = transform.position.y;
+        if (y > topLimit.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, topLimit.position.y, 0f);
+            
+        }
+
+        if (y < bottomLimit.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, bottomLimit.position.y, 0f);
+        }
+    }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
         
         var y = transform.position.y;
-        if (y <= topLimit.position.y && y >= bottomLimit.position.y)
+        var inputY = playerSpeed * context.ReadValue<Vector2>().y;
+        if ((inputY > 0 && y <= topLimit.position.y) ||
+            (inputY < 0 && y >= bottomLimit.position.y))
         {
-            _rb.linearVelocityY = playerSpeed * context.ReadValue<Vector2>().y;
+            _rb.linearVelocityY = playerSpeed * inputY ;
         }
         else
         {
