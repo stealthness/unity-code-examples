@@ -1,23 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace _Scripts
 {
-
-    private void Start()
+    public class GameManager : MonoBehaviour
     {
-        Time.timeScale = 1.0f;
-    }
-
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
+    
+        public static GameManager Instance;
+    
+        private GameState _gameState;
+    
+    
+        private void Awake()
         {
-            SceneManager.LoadScene(0);
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
         }
+    
+        private void Start()
+        {
+            Time.timeScale = 1.0f;
+            _gameState = GameState.STARTED;
+    
+        }
+    
+        public void EndGame()
+        {
+            _gameState = GameState.ENDED;
+        }
+    
+        private void Update()
+        {
+            
+            if (_gameState == GameState.ENDED && Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+    
+    }
+    
+    enum GameState
+    {
+        MENU, STARTED, ENDED
     }
 
 }
+
