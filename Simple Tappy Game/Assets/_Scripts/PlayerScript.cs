@@ -84,6 +84,7 @@ namespace _Scripts
                 Die();
             }
         }
+        
 
         private void Die()
         {

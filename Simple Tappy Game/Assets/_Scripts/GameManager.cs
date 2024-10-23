@@ -25,7 +25,11 @@ namespace _Scripts
            Time.timeScale = 0.0f;
        }
 
-       
+       public void StartGame()
+       {
+           Time.timeScale = 1.0f;
+           UIMenu.Instance.StartPanel.SetActive(false);
+       }
 
        
        private void OnTriggerExit2D(Collider2D collision)
