@@ -45,7 +45,7 @@ namespace _Scripts
     
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if ( collision.gameObject.CompareTag("Piller") )
+            if ( collision.gameObject.CompareTag("Pillar") )
             {
                 Debug.Log("Splat");
                 Time.timeScale = 0f;

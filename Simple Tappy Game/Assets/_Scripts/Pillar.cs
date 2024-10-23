@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace _Scripts
@@ -7,6 +6,7 @@ namespace _Scripts
     [RequireComponent(typeof(BoxCollider2D))]
     public class Pillar : MonoBehaviour
     {
+        private const float LeftEdge = -10f;
         private Rigidbody2D _rb;
         public float PillarSpeed { get; set; }
         public float PillarHeight { get; set; }
@@ -25,6 +25,13 @@ namespace _Scripts
             _rb.linearVelocityX = -PillarSpeed;
         }
         
+        private void Update()
+        {
+            if (transform.position.x < LeftEdge)
+            {
+                Destroy(gameObject);
+            }
+        } 
     }
 
 }

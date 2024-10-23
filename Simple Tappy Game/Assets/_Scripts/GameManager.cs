@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 
 namespace _Scripts
 {
@@ -31,7 +29,7 @@ namespace _Scripts
        private void OnTriggerExit2D(Collider2D collision)
        {
            Debug.Log($"collision {collision.name} has left the area");
-           if (collision.CompareTag("Piller"))
+           if (collision.CompareTag("Pillar"))
            {
                Destroy(collision.gameObject);
            }
