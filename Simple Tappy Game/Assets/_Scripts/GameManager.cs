@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _Scripts
 {
@@ -31,6 +32,10 @@ namespace _Scripts
            UIMenu.Instance.StartPanel.SetActive(false);
        }
 
+       public void ReplayGame()
+       {
+           SceneManager.LoadScene(0);
+       }
        
        private void OnTriggerExit2D(Collider2D collision)
        {
