@@ -22,8 +22,10 @@ namespace _Scripts
 
        private void Start()
        {
-           Time.timeScale = 1.0f;
+           Time.timeScale = 0.0f;
        }
+
+       
 
        
        private void OnTriggerExit2D(Collider2D collision)

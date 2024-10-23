@@ -92,6 +92,7 @@ namespace _Scripts
             // need to be change later to game speed
             _rb.linearVelocityX = -3f;
             _rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            UIMenu.Instance.ShowEndPanel();
         }
     }
 
