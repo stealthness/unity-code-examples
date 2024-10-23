@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts
@@ -19,11 +20,11 @@ namespace _Scripts
         private void Start()
         {
             _rb.transform.localScale = new Vector3(1, 2 * PillarHeight, 1);
-    
             _rb.gravityScale = 0f;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            _rb.linearVelocity = new Vector3(-PillarSpeed, 0, 0);
+            _rb.linearVelocityX = -PillarSpeed;
         }
+        
     }
 
 }

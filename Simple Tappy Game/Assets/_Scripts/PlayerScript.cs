@@ -9,7 +9,7 @@ namespace _Scripts
     
         private Rigidbody2D _rb;
         [SerializeField] private float thrustForce = 30f;
-        [SerializeField] private bool isThrusting = false;
+        [SerializeField] private bool isThrusting;
     
         private void Awake()
         {

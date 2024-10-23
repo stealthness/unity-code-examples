@@ -16,18 +16,18 @@ namespace _Scripts
         // Start is called before the first frame update
         void Start()
         {
-            Invoke("CreatePillar", startFirstPillarTime);
+            Invoke(nameof(CreatePillar), startFirstPillarTime);
         }
     
         private void CreatePillar()
         {
             Debug.Log("Pillars Create");
-            float length = TopPillarStartPoint.position.y - BottomPillarStartPoint.position.y;
-            float bottomHeight = Random.Range(1, length - gapHeight - 1);
-            float topHeight = length - gapHeight - bottomHeight;
+            var length = TopPillarStartPoint.position.y - BottomPillarStartPoint.position.y;
+            var bottomHeight = Random.Range(1, length - gapHeight - 1);
+            var topHeight = length - gapHeight - bottomHeight;
             CreatePillarAt(BottomPillarStartPoint.position, bottomHeight);
             CreatePillarAt(TopPillarStartPoint.position, topHeight);
-            Invoke("CreatePillar", repeatNextPillarTime);
+            Invoke(nameof(CreatePillar), repeatNextPillarTime);
         }
     
         private void CreatePillarAt(Vector3 position, float height)
@@ -37,7 +37,6 @@ namespace _Scripts
             pillar.GetComponent<Pillar>().PillarHeight = height;
     
         }
-    
     }
 
 }
