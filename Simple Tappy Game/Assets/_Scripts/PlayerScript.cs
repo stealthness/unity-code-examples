@@ -1,4 +1,6 @@
+using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,19 +17,19 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-
-    // Update is called once per frame
-    void Update()
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
+        if (context.started)
         {
-            isThrusting=true;
+            isThrusting = true;
         }
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0) || Input.GetButtonUp("Fire1"))
+        else if (context.canceled)
         {
-            isThrusting=false;
+            isThrusting = false;
         }
+        
     }
+    
 
     private void FixedUpdate()
     {
