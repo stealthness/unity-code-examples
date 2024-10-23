@@ -1,61 +1,66 @@
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerScript : MonoBehaviour
+namespace _Scripts
 {
-
-    private Rigidbody2D rb;
-    [SerializeField] private float thrustForce = 30f;
-    [SerializeField] private bool isThrusting = false;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class PlayerScript : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.started)
+    
+        private Rigidbody2D _rb;
+        [SerializeField] private float thrustForce = 30f;
+        [SerializeField] private bool isThrusting = false;
+    
+        private void Awake()
         {
-            isThrusting = true;
+            _rb = GetComponent<Rigidbody2D>();
         }
-        else if (context.canceled)
+    
+        /// <summary>
+        /// OnJump, whilst jump is pressed set is thrusting to true
+        /// </summary>
+        /// <param name="context"></param>
+        public void OnJump(InputAction.CallbackContext context)
         {
-            isThrusting = false;
+            if (context.started)
+            {
+                isThrusting = true;
+            }
+            else if (context.canceled)
+            {
+                isThrusting = false;
+            }
         }
         
-    }
     
-
-    private void FixedUpdate()
-    {
-        if (isThrusting)
+        private void FixedUpdate()
         {
-            //Debug.Log("Flap");
-            rb.AddForce(thrustForce * Vector2.up);
+            if (isThrusting)
+            {
+                //Debug.Log("Flap");
+                _rb.AddForce(thrustForce * Vector2.up);
+            }
+    
         }
-
+    
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if ( collision.gameObject.CompareTag("Piller") )
+            {
+                Debug.Log("Splat");
+                Time.timeScale = 0f;
+            }
+        }
+    
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Ceiling"))
+            {
+                Debug.Log("Splat");
+                Time.timeScale = 0f;
+            }
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if ( collision.gameObject.CompareTag("Piller") )
-        {
-            Debug.Log("Splat");
-            Time.timeScale = 0f;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Ceiling"))
-        {
-            Debug.Log("Splat");
-            Time.timeScale = 0f;
-        }
-    }
 }
+

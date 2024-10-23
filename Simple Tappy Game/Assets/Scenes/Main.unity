@@ -924,104 +924,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea120536accfc34e8356d624cfee0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PillerPrefab: {fileID: 3879987606645266931, guid: dc0ff9fe9f6adbc4584f60f7a00c0bc3, type: 3}
-  BottomPillerStartPoint: {fileID: 2107689472}
-  TopPillerStartPoint: {fileID: 1943085964}
-  startFirstPillerTime: 0
-  repeatNextPillerTime: 2
-  pillerSpeed: 3
+  PillarPrefab: {fileID: 3879987606645266931, guid: dc0ff9fe9f6adbc4584f60f7a00c0bc3, type: 3}
+  BottomPillarStartPoint: {fileID: 2107689472}
+  TopPillarStartPoint: {fileID: 1943085964}
+  startFirstPillarTime: 0
+  repeatNextPillarTime: 2
+  pillarSpeed: 3
   gapHeight: 4
---- !u!1 &1279188846
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1279188849}
-  - component: {fileID: 1279188848}
-  - component: {fileID: 1279188847}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1279188847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279188846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba183f366b49ae94a98012b7cd588ffb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &1279188848
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279188846}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.6160164, y: -0.7792721}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 20.225163, y: 54.650944}
-  m_EdgeRadius: 0
---- !u!4 &1279188849
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279188846}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1424051009}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1424051008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +965,6 @@ Transform:
   - {fileID: 135794684}
   - {fileID: 2107689472}
   - {fileID: 1943085964}
-  - {fileID: 1279188849}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1457203451
@@ -1205,6 +1113,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7b8ee05d-2a5f-4a94-9e53-cdbb6b0972cc
+    m_ActionName: 'UI/Reset[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -1282,7 +1194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1943085964}
   m_Layer: 0
-  m_Name: TopPillerStart
+  m_Name: TopPillarStart
   m_TagString: Ceiling
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1313,7 +1225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2107689472}
   m_Layer: 0
-  m_Name: BottonPillerStart
+  m_Name: BottonPillarStart
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
