@@ -19,7 +19,6 @@ namespace _Scripts
     
         private void Start()
         {
-            _rb.transform.localScale = new Vector3(1, 2 * PillarHeight, 1);
             _rb.gravityScale = 0f;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             _rb.linearVelocityX = -PillarSpeed;
