@@ -20,7 +20,7 @@ namespace _Scripts
             
             if (transform.position.x < -10)
             {
-                transform.position = Vector3.zero;
+                transform.Translate(new Vector3(10f,0,0));
             }
         }
     }

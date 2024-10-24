@@ -6,12 +6,10 @@ namespace _Scripts
     {
     
         public GameObject PillarPrefab;
-        public Transform BottomPillarStartPoint;
-        public Transform TopPillarStartPoint;
-        [SerializeField] private float startFirstPillarTime = 0f;
+        [SerializeField] private float startFirstPillarTime = 1f;
         [SerializeField] private float repeatNextPillarTime = 2f;
         [SerializeField] private float pillarSpeed = 3f;
-        [SerializeField] private float gapHeight = 1f;
+        [SerializeField] private float gapHeight = 2f;
     
         // Start is called before the first frame update
         void Start()
@@ -22,21 +20,13 @@ namespace _Scripts
         private void CreatePillars()
         {
             Debug.Log("Pillars Create");
-            var length = TopPillarStartPoint.position.y - BottomPillarStartPoint.position.y;
-            var bottomHeight = Random.Range(1, 4);
-            var topHeight = length - gapHeight - bottomHeight;
-            CreatePillarColumnAt(BottomPillarStartPoint.position, bottomHeight);
-            CreatePillarColumnAt(TopPillarStartPoint.position, topHeight);
+            var pillar = Instantiate(PillarPrefab);
+            pillar.GetComponent<Rigidbody2D>().linearVelocityX = -pillarSpeed;
+            pillar.transform.position = new Vector3(5, Random.Range(-gapHeight, gapHeight), 0);
             Invoke(nameof(CreatePillars), repeatNextPillarTime);
         }
     
-        private void CreatePillarColumnAt(Vector3 position, float height)
-        {
-            var pillar = Instantiate(PillarPrefab, position, Quaternion.identity);
-            pillar.GetComponent<Pillar>().PillarSpeed = pillarSpeed;
-            pillar.transform.Translate(new Vector3(0f, height, 0f));
-    
-        }
+
     }
 
 }

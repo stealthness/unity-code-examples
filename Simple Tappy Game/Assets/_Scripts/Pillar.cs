@@ -6,10 +6,15 @@ namespace _Scripts
     [RequireComponent(typeof(BoxCollider2D))]
     public class Pillar : MonoBehaviour
     {
-        private const float LeftEdge = -10f;
+        private GameObject _topColumn;
+        private GameObject _bottomColumn;
+        
+        public float bottomColumnHeightOffset = 0f;
+        public float topColumnHeightOffset =0f;
+        
+        private const float LeftEdge = -20f;
         private Rigidbody2D _rb;
-        public float PillarSpeed { get; set; }
-        public float PillarHeight { get; set; }
+
     
     
         private void Awake()
@@ -19,9 +24,10 @@ namespace _Scripts
     
         private void Start()
         {
+
+            
             _rb.gravityScale = 0f;
-            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            _rb.linearVelocityX = -PillarSpeed;
+            _rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
         }
         
         private void Update()
