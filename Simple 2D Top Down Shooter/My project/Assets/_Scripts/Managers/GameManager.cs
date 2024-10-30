@@ -1,16 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour
+namespace _Scripts.Managers
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    public class GameManager : MonoBehaviour
     {
-        
-    }
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            Debug.Log("Game Manager Start");
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void OnPauseToggle(InputAction.CallbackContext context)
+        {
+            if (!context.performed) return;
+            
+            if (Time.timeScale.Equals(0))
+            {
+                Debug.Log("Game Resumed");
+                Time.timeScale = 1;
+            }
+            else
+            {
+                Debug.Log("Game Paused");
+                Time.timeScale = 0;
+            }
+            
+        }
     }
 }
