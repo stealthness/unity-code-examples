@@ -1,9 +1,8 @@
-using System;
 using _Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _Scripts.Core
+namespace _Scripts.Player
 {
     public class Weapon : MonoBehaviour
     {
