@@ -9,11 +9,7 @@ namespace _Scripts.Enemy
         {
             Speed = 10f;
         }
-
-        private new void Update()
-        {
-            base.Update();
-        }
+        
     
         public void SetDirection(Vector2 direction)
         {
