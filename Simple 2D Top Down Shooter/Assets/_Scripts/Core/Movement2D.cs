@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _Scripts.Core
 {
@@ -20,10 +18,6 @@ namespace _Scripts.Core
             Rb = GetComponent<Rigidbody2D>();
         }
 
-        public void OnMove(InputAction.CallbackContext context)
-        {
-            MovementDirection = context.ReadValue<Vector2>();
-        }
 
         protected void Update()
         {

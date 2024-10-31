@@ -1,3 +1,4 @@
+using _Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,10 +6,13 @@ namespace _Scripts.Core
 {
     public class Weapon : MonoBehaviour
     {
+        public GameObject bulletPrefab;
+        
         public Camera mainCamera;
         private InputAction aimAction;
         private PlayerInput playerInput;
         private Vector3 _currentMouseScreenPosition;
+        private Vector3 _directionToMouse;
 
         private const float Tol = 10e-6f;
         
@@ -39,15 +43,22 @@ namespace _Scripts.Core
             mouseWorldPosition.z = 0;
             
             // Calculate direction from player (parent) to mouse position
-            Vector3 directionToMouse = (mouseWorldPosition - transform.parent.position).normalized;
+            _directionToMouse = (mouseWorldPosition - transform.parent.position).normalized;
             
             
             // Rotate the gun around the player to look at the mouse position
-            float angle = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
-            transform.position = transform.parent.position +  directionToMouse * 0.5f;
+            float angle = Mathf.Atan2(_directionToMouse.y, _directionToMouse.x) * Mathf.Rad2Deg;
+            transform.position = transform.parent.position +  _directionToMouse * 0.5f;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
             
             //Debug.Log($"mWP: {mousePosition}, dTM: {directionToMouse}, angle: {angle}");
+        }
+        
+        public void Fire()
+        {
+                Debug.Log("Fire");
+                var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                bullet.GetComponent<Bullet>().SetDirection(_directionToMouse);
         }
 
     }
