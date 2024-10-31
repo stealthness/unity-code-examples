@@ -6,9 +6,12 @@ namespace _Scripts.Enemy
 {
     public class Bullet : Movement2D
     {
+        
+        [SerializeField] private float bulletLifeTime = 3f;
         private void Start()
         {
             Speed = 10f;
+            Invoke(nameof(EndBullet), bulletLifeTime);
         }
         
     
@@ -16,6 +19,12 @@ namespace _Scripts.Enemy
         {
             MovementDirection = direction;
         }
+        
+        public void EndBullet()
+        {
+            Destroy(gameObject);
+        }
+        
 
         private void OnTriggerEnter2D(Collider2D other)
         {

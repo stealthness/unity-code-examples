@@ -1,3 +1,4 @@
+using System;
 using _Scripts.Enemy;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,8 @@ namespace _Scripts.Core
         private PlayerInput playerInput;
         private Vector3 _currentMouseScreenPosition;
         private Vector3 _directionToMouse;
+        private bool _isWeponOnCooldown = false;
+        [SerializeField] private float _weaponReloadTime = 0.3f;
 
         private const float Tol = 10e-6f;
         
@@ -23,12 +26,16 @@ namespace _Scripts.Core
             aimAction = playerInput.actions["Aim"];
         }
 
+        private void Start()
+        {
+           
+        }
+
 
         // Update is called once per frame
         void Update()
         {
-            Vector3 mouseScreenPosition = Vector3.zero;
-
+            
             if (aimAction.triggered)
             {
                 UpdateRotate(aimAction.ReadValue<Vector2>());
@@ -56,9 +63,20 @@ namespace _Scripts.Core
         
         public void Fire()
         {
-                Debug.Log("Fire");
-                var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                bullet.GetComponent<Bullet>().SetDirection(_directionToMouse);
+            if (_isWeponOnCooldown)
+            {
+                return;
+            }
+            Debug.Log("Fire");
+            var bullet = Instantiate(bulletPrefab, transform.position +  _directionToMouse * 0.5f, Quaternion.identity);
+            bullet.GetComponent<Bullet>().SetDirection(_directionToMouse);
+            _isWeponOnCooldown = true;
+            Invoke(nameof(ResetCooldown), _weaponReloadTime);
+        }
+
+        private void ResetCooldown()
+        {
+            _isWeponOnCooldown = false;
         }
 
     }

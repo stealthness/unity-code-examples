@@ -36,7 +36,6 @@ namespace _Scripts.Player
             {
                 _playerMovement.SetMovementDirection(Vector2.zero);
             }
-            
         }
 
     }    
