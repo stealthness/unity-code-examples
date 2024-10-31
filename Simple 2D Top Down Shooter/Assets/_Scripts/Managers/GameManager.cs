@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,7 @@ namespace _Scripts.Managers
         /// GameManager instance is a singleton that is accessed by other classes
         /// </summary>
         public static GameManager Instance;
-
+        
         /// <summary>
         /// Awake is called when the script instance is being loaded and will set the GameManager instance to this object
         /// </summary>
@@ -28,6 +29,13 @@ namespace _Scripts.Managers
                 Destroy(gameObject);
             }
         }
+
+        private void Start()
+        {
+            Debug.Log("GameManager started");
+            Time.timeScale = 1;
+        }
+
 
         /// <summary>
         /// OnPauseToggle is called when the pause button is pressed and will toggle the game between paused and resumed
@@ -57,6 +65,7 @@ namespace _Scripts.Managers
             Debug.Log("Game Over");
             Time.timeScale = 0;
         }
+        
     }
 
 }

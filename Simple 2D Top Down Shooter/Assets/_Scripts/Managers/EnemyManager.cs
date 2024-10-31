@@ -88,6 +88,10 @@ namespace _Scripts.Managers
         /// </summary>
         public Vector3 GetTarget()
         {
+            if (target == null)
+            {
+                return Vector3.zero;
+            }
             return target.position;
         }
     }

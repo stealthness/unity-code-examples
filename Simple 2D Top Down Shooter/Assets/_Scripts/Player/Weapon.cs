@@ -11,6 +11,7 @@ namespace _Scripts.Player
         public Camera mainCamera;
         private InputAction aimAction;
         private PlayerInput playerInput;
+        private AudioSource _audioSource;
         private Vector3 _currentMouseScreenPosition;
         private Vector3 _directionToMouse;
         private bool _isWeponOnCooldown = false;
@@ -22,6 +23,7 @@ namespace _Scripts.Player
         private void Awake()
         {
             playerInput = GetComponentInParent<PlayerInput>();
+            _audioSource = GetComponent<AudioSource>();
             aimAction = playerInput.actions["Aim"];
         }
 
@@ -66,7 +68,7 @@ namespace _Scripts.Player
             {
                 return;
             }
-            Debug.Log("Fire");
+            _audioSource.Play();
             var bullet = Instantiate(bulletPrefab, transform.position +  _directionToMouse * 0.5f, Quaternion.identity);
             bullet.GetComponent<Bullet>().SetDirection(_directionToMouse);
             _isWeponOnCooldown = true;
