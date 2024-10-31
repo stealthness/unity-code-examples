@@ -6,19 +6,22 @@ namespace _Scripts.Enemy
 {
     
     [RequireComponent(typeof(EnemyMovement))]
-    public class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour, IDamageable
     {
-        private EnemyMovement _enemyMovement;
+        protected EnemyMovement _enemyMovement;
+        
+        private int _maxHealth = 100;
+        private int _health;
 
         private void Awake()
         {
             _enemyMovement = GetComponent<EnemyMovement>();
         }
         
-        private void Start()
+        protected virtual void Start()
         {
-            _enemyMovement.Speed = 1f;
-            InvokeRepeating(nameof(_enemyMovement.ChangeDirection), 0f, 0.2f);
+            _health = _maxHealth;
+            _enemyMovement.speed = 1f;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -32,6 +35,25 @@ namespace _Scripts.Enemy
                 GameManager.Instance.GameOver();
             }
         }
-        
+
+        public void TakeDamage(int damage)
+        {
+            _health -= damage;
+            if (_health <= 0)
+            {
+                _health = 0;
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            Destroy(this.gameObject);
+        }
+
+        public void Heal(int healAmount)
+        {
+            _health = Mathf.Min(_health + healAmount, _maxHealth);
+        }
     }
 }

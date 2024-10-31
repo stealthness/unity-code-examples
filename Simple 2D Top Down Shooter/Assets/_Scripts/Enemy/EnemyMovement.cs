@@ -8,13 +8,12 @@ namespace _Scripts.Enemy
     {
 
         [SerializeField]private float _changeDirectionUpdateFequency = 0.5f;
-
-        private void Start()
+        protected virtual void Start()
         {
             InvokeRepeating(nameof(ChangeDirection), 0f, _changeDirectionUpdateFequency);
         }
 
-        internal void ChangeDirection()
+        public void ChangeDirection()
         {
             MovementDirection = (EnemyManager.Instance.GetTarget() - transform.position).normalized;
         }

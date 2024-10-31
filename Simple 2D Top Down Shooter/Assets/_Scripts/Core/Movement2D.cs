@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts.Core
@@ -11,17 +12,17 @@ namespace _Scripts.Core
 
         internal Vector2 MovementDirection;
 
-        public float Speed = 1f;
+        public float speed = 1f;
 
-        private void Awake()
+        internal void Awake()
         {
             Rb = GetComponent<Rigidbody2D>();
         }
-
+        
 
         protected void Update()
         {
-            transform.position += (Vector3) MovementDirection * (Speed * Time.deltaTime);
+            transform.position += (Vector3) MovementDirection * (speed * Time.deltaTime);
         }
     }
 }

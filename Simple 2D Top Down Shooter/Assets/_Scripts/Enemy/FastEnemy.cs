@@ -4,23 +4,16 @@ namespace _Scripts.Enemy
 {
     public class FastEnemy : Enemy
     {
-        
-        private EnemyMovement _enemyMovement;
-        
-        
-        private void Awake()
+        protected override void Start()
         {
-            _enemyMovement = GetComponent<EnemyMovement>();
-        }
-        private void Start()
-        {
-            _enemyMovement.Speed = 3f;
+            base.Start();
+            _enemyMovement.speed = 3f;
             InvokeRepeating(nameof(MovementPattern), 0f, 2f);
         }
         
         private void MovementPattern()
         {   
-            _enemyMovement.Speed = 3f;
+            _enemyMovement.speed = 3f;
             Invoke(nameof(PauseEnemy), 1f);
             _enemyMovement.ChangeDirection();
         }
@@ -28,7 +21,7 @@ namespace _Scripts.Enemy
         private void PauseEnemy()
         {
             _enemyMovement.MovementDirection = Vector2.zero;
-            _enemyMovement.Speed = 0f;
+            _enemyMovement.speed = 0f;
         }
 
     }

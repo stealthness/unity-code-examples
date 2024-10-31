@@ -1,27 +1,22 @@
-﻿using _Scripts.Player;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Rendering.Universal;
-
+﻿using UnityEngine;
 namespace _Scripts.Enemy
 {
     
     
     public class SlowEnemy : Enemy
     {
+       
 
-        private EnemyMovement _enemyMovement;
-        
-        
-        private void Awake()
+        protected override void Start()
         {
-            _enemyMovement = GetComponent<EnemyMovement>();
+            base.Start();
+            _enemyMovement.speed = 1f;
+            InvokeRepeating(nameof(ChangeDirection), 0f, 0.3f);
         }
         
-        private void Start()
+        private void ChangeDirection()
         {
-            _enemyMovement.Speed = 1f;
-            InvokeRepeating(nameof(_enemyMovement.ChangeDirection), 0f, 0.3f);
+            _enemyMovement.ChangeDirection();
         }
         
 

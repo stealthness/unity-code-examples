@@ -8,7 +8,7 @@ namespace _Scripts.Player
     {
         private void Start()
         {
-            Speed = 5f;
+            speed = 5f;
         }
 
         public void SetMovementDirection(Vector2 direction)
