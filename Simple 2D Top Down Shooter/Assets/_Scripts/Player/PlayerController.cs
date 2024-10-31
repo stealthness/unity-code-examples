@@ -29,7 +29,14 @@ namespace _Scripts.Player
         
         public void OnMove(InputAction.CallbackContext context)
         {
-            _playerMovement.SetMovementDirection(context.ReadValue<Vector2>());
+            if (context.performed)
+            {
+                _playerMovement.SetMovementDirection(context.ReadValue<Vector2>());
+            } else if (context.canceled)
+            {
+                _playerMovement.SetMovementDirection(Vector2.zero);
+            }
+            
         }
 
     }    

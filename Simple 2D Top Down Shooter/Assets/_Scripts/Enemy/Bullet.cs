@@ -1,3 +1,4 @@
+using System;
 using _Scripts.Core;
 using UnityEngine;
 
@@ -21,6 +22,14 @@ namespace _Scripts.Enemy
             if (other.CompareTag("Enemy"))
             {
                 Destroy(other.gameObject);
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("GameArea"))
+            {
                 Destroy(gameObject);
             }
         }

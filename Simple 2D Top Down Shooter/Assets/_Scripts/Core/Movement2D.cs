@@ -11,7 +11,7 @@ namespace _Scripts.Core
 
         protected Vector2 MovementDirection;
         
-        protected float Speed = 5f;
+        protected float Speed = 1f;
 
         private void Awake()
         {
