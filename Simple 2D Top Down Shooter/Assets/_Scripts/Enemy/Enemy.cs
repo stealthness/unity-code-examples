@@ -1,6 +1,7 @@
 ﻿using _Scripts.Core;
 using _Scripts.Managers;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Scripts.Enemy
 {
@@ -22,6 +23,12 @@ namespace _Scripts.Enemy
         /// The current health of the enemy.
         /// </summary>
         private int _health;
+        
+        /// <summary>
+        /// default score value of the enemy
+        /// </summary>
+        private int _scoreValue = 100;
+        
 
         /// <summary>
         /// Awake is called when the script instance is being loaded and will reference the EnemyMovement component.
@@ -47,7 +54,6 @@ namespace _Scripts.Enemy
         /// <param name="other"></param>
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log("Enemy: OnCollisionEnter: " + other.gameObject.tag);
             if (other.gameObject.CompareTag("Player"))
             {
                 FindAnyObjectByType<CameraFollow>().StopFollowing();
@@ -77,6 +83,7 @@ namespace _Scripts.Enemy
         /// </summary>
         public void Die()
         {
+            ScoreManager.Instance.AddScore(_scoreValue);
             Destroy(this.gameObject);
         }
 
@@ -88,5 +95,6 @@ namespace _Scripts.Enemy
         {
             _health = Mathf.Min(_health + healAmount, _maxHealth);
         }
+
     }
 }

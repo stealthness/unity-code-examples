@@ -8,7 +8,7 @@ namespace _Scripts.Enemy
     public class FastEnemy : Enemy
     {
         [SerializeField] private float pauseTime = 1f;
-        [SerializeField] private float movementPatternRepeatRate = 1f;
+        [SerializeField] private float movementPatternRepeatRate = 3f;
         [SerializeField] private float fastEnemyMovementSpeed = 3f;
         [SerializeField] private float fastEnemyPauseTime = 1f;
         
@@ -29,9 +29,10 @@ namespace _Scripts.Enemy
         {   
             _enemyMovement.speed = fastEnemyMovementSpeed;
             _enemyMovement.ChangeDirection();
-            
+            Debug.Log($"{movementPatternRepeatRate}, {fastEnemyPauseTime}");
             if (fastEnemyPauseTime < movementPatternRepeatRate)
             {
+                
                 Invoke(nameof(PauseEnemy), fastEnemyPauseTime);
             }
         }

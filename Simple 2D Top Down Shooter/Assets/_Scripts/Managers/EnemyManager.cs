@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using _Scripts.Core;
+    
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Scripts.Managers
 {
@@ -8,6 +11,7 @@ namespace _Scripts.Managers
     public class EnemyManager : MonoBehaviour
     {
      
+        [FormerlySerializedAs("Score")] public ScoreManager scoreManager;
         public static EnemyManager Instance;
         /// <summary>
         /// List of the enemy prefabs
