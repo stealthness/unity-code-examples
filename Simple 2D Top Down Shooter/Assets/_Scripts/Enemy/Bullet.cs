@@ -28,6 +28,7 @@ namespace _Scripts.Enemy
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("Bullet: OnTriggerEnter: " + other.tag);
             if (other.CompareTag("Enemy"))
             {
                 Destroy(other.gameObject);

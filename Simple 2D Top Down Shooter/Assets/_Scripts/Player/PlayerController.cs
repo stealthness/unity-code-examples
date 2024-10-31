@@ -1,4 +1,5 @@
 ﻿using _Scripts.Core;
+using _Scripts.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,9 +11,11 @@ namespace _Scripts.Player
         
         private Weapon _weapon;
         private PlayerMovement _playerMovement;
+        private BoxCollider2D _boxCollider2D;
         
         private void Awake()
         {
+            _boxCollider2D = GetComponent<BoxCollider2D>();
             _weapon = GetComponentInChildren<Weapon>();
             _playerMovement = GetComponent<PlayerMovement>();
         }
@@ -37,6 +40,10 @@ namespace _Scripts.Player
                 _playerMovement.SetMovementDirection(Vector2.zero);
             }
         }
+        
+
+        
+
 
     }    
 

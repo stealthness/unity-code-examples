@@ -13,30 +13,23 @@ namespace _Scripts.Enemy
         private void Start()
         {
             Speed = 1f;
-            InvokeRepeating(nameof(changeDirection), 0f, _changeDirectionUpdateFequency);
+            InvokeRepeating(nameof(ChangeDirection), 0f, _changeDirectionUpdateFequency);
         }
         
-        private void changeDirection()
+        private void ChangeDirection()
         {
             MovementDirection = (EnemyManager.Instance.GetTarget() - transform.position).normalized;
         }
+        
 
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log("OnTriggerEnter: " + other.tag);
-            if (other.CompareTag("Player"))
-            {
-                Destroy(other.gameObject);
-                GameManager.Instance.GameOver();
-            }
-        }
-
-        private void OnCollisionEnter(Collision other)
-        {
-            Debug.Log("OnCollisionEnter: " + other.gameObject.tag);
+            Debug.Log("Enemy: OnCollisionEnter: " + other.gameObject.tag);
             if (other.gameObject.CompareTag("Player"))
             {
+                FindAnyObjectByType<CameraFollow>().StopFollowing();
                 Destroy(other.gameObject);
+ 
                 GameManager.Instance.GameOver();
             }
         }
