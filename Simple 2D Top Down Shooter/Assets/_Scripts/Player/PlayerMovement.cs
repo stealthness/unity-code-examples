@@ -1,16 +1,15 @@
+using _Scripts.Core;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+
+namespace _Scripts.Player
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class PlayerMovement : Movement2D
     {
         
+        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
