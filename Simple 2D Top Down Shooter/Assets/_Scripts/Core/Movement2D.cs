@@ -9,7 +9,7 @@ namespace _Scripts.Core
     {
         protected Rigidbody2D Rb;
 
-        protected Vector2 MovementDirection;
+        internal Vector2 MovementDirection;
 
         public float Speed = 1f;
 

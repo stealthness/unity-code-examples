@@ -6,7 +6,7 @@ namespace _Scripts.Managers
     {
      
         public static EnemyManager Instance;
-        public GameObject EnemyPrefab;
+        public GameObject[] EnemyPrefab;
         public Transform target;
         
         private void Awake()
@@ -29,7 +29,8 @@ namespace _Scripts.Managers
         
         private void GenerateEnemy()
         {
-            Instantiate(EnemyPrefab, validPostion(), Quaternion.identity);
+            Instantiate(EnemyPrefab[0], validPostion(), Quaternion.identity);
+            Instantiate(EnemyPrefab[1], validPostion(), Quaternion.identity);
         }
 
         private Vector3 validPostion()
