@@ -1,51 +1,57 @@
 using TMPro;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+namespace _Scripts
 {
-    private const int GAME_TIME_LENGTH = 60;
-    private int gameTimer;
-
-    public TextMeshProUGUI TimerText;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Timer : MonoBehaviour
     {
-        ResetTimer();
-    }
+        private const int GameTimeLength = 60;
+        private int _gameTimer;
 
-    /// <summary>
-    /// Starts the timer
-    /// </summary>
-    public void StartTimer()
-    {
-        ResetTimer();
-        InvokeRepeating("NextSec", 1f, 1f);
-    }
+        public TextMeshProUGUI TimerText;
 
-    private void NextSec()
-    {
-
-        if (gameTimer <= 0)
+        // Start is called before the first frame update
+        void Start()
         {
-            CancelInvoke();
-            FindObjectOfType<TargetManager>().CancelTargetSpawn();
-            GameManager.Instance.EndGame();
-        }
-        else
-        {
-            gameTimer--;
-            TimerText.text = $"{gameTimer}";
+            ResetTimer();
         }
 
-    }
+        /// <summary>
+        /// Starts the timer
+        /// </summary>
+        public void StartTimer()
+        {
+            ResetTimer();
+            InvokeRepeating(nameof(NextSec), 1f, 1f);
+        }
 
-    /// <summary>
-    /// Resets the timer
-    /// </summary>
-    public void ResetTimer()
-    {
-        gameTimer = GAME_TIME_LENGTH;
-        TimerText.text = $"{gameTimer}";
+        /// <summary>
+        /// Checks if the game timer has reached 0, if so ends the game, otherwise decrements the timer
+        /// </summary>
+        private void NextSec()
+        {
+
+            if (_gameTimer <= 0)
+            {
+                CancelInvoke();
+                TargetManager.Instance.CancelTargetSpawn();
+                GameManager.Instance.EndGame();
+            }
+            else
+            {
+                _gameTimer--;
+                TimerText.text = $"{_gameTimer}";
+            }
+
+        }
+
+        /// <summary>
+        /// Resets the timer
+        /// </summary>
+        public void ResetTimer()
+        {
+            _gameTimer = GameTimeLength;
+            TimerText.text = $"{_gameTimer}";
+        }
     }
 }
