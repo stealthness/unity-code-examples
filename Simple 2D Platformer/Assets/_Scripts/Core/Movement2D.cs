@@ -1,3 +1,4 @@
+using _Scripts.Player;
 using UnityEngine;
 
 namespace _Scripts.Core
@@ -6,7 +7,6 @@ namespace _Scripts.Core
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class Movement2D : MonoBehaviour
     {
-
         protected Rigidbody2D rigidbody2D;
         [SerializeField] protected float jumpForce = 5f;
         [SerializeField] protected bool isGrounded;

@@ -30,4 +30,17 @@ namespace _Scripts.Player
             }
         }
     }
+
+    public class Movement2DData : ScriptableObject
+    {
+        public float speed = 5f;
+        public float jumpForce = 5f;
+    }
+    
+    [CreateAssetMenu]
+    public class PlayerMovement2DData : Movement2DData
+    {
+        [Header("Player Layer")] [Tooltip("The layer that the player is on")]
+        public float playerLayer;
+    }
 }
