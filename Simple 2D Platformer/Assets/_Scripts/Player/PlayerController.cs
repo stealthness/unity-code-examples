@@ -1,16 +1,33 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+namespace _Scripts.Player
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class PlayerController : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        private PlayerMovement2D _playerMovement2D;
+
+        private void Awake()
+        {
+            _playerMovement2D = GetComponent<PlayerMovement2D>();
+        }
+    
+
+        public void Move(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _playerMovement2D.OnMove(context.ReadValue<Vector2>());
+            }
+        }
         
+        public void Jump(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _playerMovement2D.OnJump();
+            }
+        }
     }
 }

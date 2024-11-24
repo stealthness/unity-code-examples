@@ -1,16 +1,39 @@
+using _Scripts.Core;
 using UnityEngine;
 
-public class PlayerMovement2D : MonoBehaviour
+namespace _Scripts.Player
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class PlayerMovement2D : Movement2D
     {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        protected override void Awake()
+        {
+            base.Awake();
+            rigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
         
+        
+        private void Start()
+        {
+            isGrounded = true;
+        }
+        
+        private void CheckGrounded()
+        {
+            var hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
+            if (hit.collider != null)
+            {
+                Debug.Log("Hit: " + hit.collider.tag);
+                
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    isGrounded = true;
+                }
+            }
+            else
+            {
+                isGrounded = false;
+            }
+        }
     }
 }
