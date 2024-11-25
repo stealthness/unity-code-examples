@@ -1,4 +1,5 @@
 
+using System;
 using _Scripts.Player;
 using UnityEngine;
 
@@ -11,16 +12,22 @@ namespace _Scripts.Core
         [SerializeField] internal Movement2DData stats;
         internal Rigidbody2D rigidbody2D;
         [SerializeField] protected bool isGrounded;
+        private Vector2 _direction;
 
         protected virtual void Awake()
         {
             rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        
+
+        private void FixedUpdate()
+        {
+            rigidbody2D.linearVelocity = new Vector2(stats.speed * _direction.x, rigidbody2D.linearVelocity.y);
+        }
 
 
         protected internal virtual void OnMove(Vector2 direction)
         {
+            _direction = direction;
             if (isGrounded)
             {
                 rigidbody2D.linearVelocity = stats.speed * new Vector2(direction.x, 0);
