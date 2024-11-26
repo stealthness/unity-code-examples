@@ -65,5 +65,11 @@ namespace _Scripts.Player
             isGrounded = hit && hit.collider.CompareTag("Ground");
             
         }
+
+        public void DeadStop()
+        {
+            rigidbody2D.gravityScale = 0;
+            rigidbody2D.linearVelocity = Vector2.zero;
+        }
     }
 }
