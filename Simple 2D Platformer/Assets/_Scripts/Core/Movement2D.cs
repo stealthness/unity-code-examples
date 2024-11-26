@@ -1,4 +1,5 @@
 using _Scripts.Player;
+using UnityEditor;
 using UnityEngine;
 
 namespace _Scripts.Core
@@ -11,7 +12,7 @@ namespace _Scripts.Core
         [SerializeField] protected bool isGrounded;
         protected Rigidbody2D rigidbody2D;
         protected SpriteRenderer spriteRenderer;
-        protected Vector2 _direction;
+        protected Vector2 direction;
 
         protected virtual void Awake()
         {
@@ -21,35 +22,29 @@ namespace _Scripts.Core
 
         private void FixedUpdate()
         {
-            rigidbody2D.linearVelocity = new Vector2(stats.speed * _direction.x, rigidbody2D.linearVelocity.y);
+            rigidbody2D.linearVelocity = new Vector2(stats.speed * direction.x, rigidbody2D.linearVelocity.y);
         }
 
 
         protected internal virtual void OnMove(Vector2 direction)
         {
-            _direction = direction;
-            if (isGrounded)
-            {
-                rigidbody2D.linearVelocity = stats.speed * new Vector2(direction.x, 0);
-            }
-            else
-            {
-                rigidbody2D.linearVelocity = new Vector2(stats.speed * direction.x, rigidbody2D.linearVelocity.y);
-            }
+            this.direction = direction;
+
+rigidbody2D.linearVelocity = isGrounded 
+    ? stats.speed * new Vector2(direction.x, 0) 
+    : new Vector2(stats.speed * direction.x, rigidbody2D.linearVelocity.y);
 
             CheckDirection();
         }
 
         private void CheckDirection()
         {
-            if (rigidbody2D.linearVelocityX > 0)
+            spriteRenderer.flipX = rigidbody2D.linearVelocityX switch
             {
-                spriteRenderer.flipX = false;
-            }
-            else if (rigidbody2D.linearVelocityX < 0)
-            {
-                spriteRenderer.flipX = true;
-            }
+                > 0 => false,
+                < 0 => true,
+                _ => spriteRenderer.flipX
+            };
         }
 
         protected internal virtual void OnJump()

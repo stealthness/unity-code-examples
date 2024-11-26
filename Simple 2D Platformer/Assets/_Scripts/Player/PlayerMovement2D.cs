@@ -72,7 +72,7 @@ namespace _Scripts.Player
         /// </summary>
         public void DeadStop()
         {
-            _direction = Vector2.zero;
+            direction = Vector2.zero;
             rigidbody2D.gravityScale = 0;
             rigidbody2D.linearVelocity = Vector2.zero;
         }

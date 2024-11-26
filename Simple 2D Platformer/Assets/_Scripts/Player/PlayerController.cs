@@ -16,6 +16,7 @@ namespace _Scripts.Player
         {
             _animator = GetComponent<Animator>();
             _playerMovement2D = GetComponent<PlayerMovement2D>();
+            _animator.Play("Idle");
         }
 
         private void Start()
