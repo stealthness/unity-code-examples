@@ -1,22 +1,22 @@
-
-using System;
 using _Scripts.Player;
 using UnityEngine;
 
 namespace _Scripts.Core
 {
-    
+    [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class Movement2D : MonoBehaviour
     {
         [SerializeField] internal Movement2DData stats;
-        internal Rigidbody2D rigidbody2D;
         [SerializeField] protected bool isGrounded;
-        private Vector2 _direction;
+        protected Rigidbody2D rigidbody2D;
+        protected SpriteRenderer spriteRenderer;
+        protected Vector2 _direction;
 
         protected virtual void Awake()
         {
             rigidbody2D = GetComponent<Rigidbody2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void FixedUpdate()
@@ -36,9 +36,22 @@ namespace _Scripts.Core
             {
                 rigidbody2D.linearVelocity = new Vector2(stats.speed * direction.x, rigidbody2D.linearVelocity.y);
             }
-            
+
+            CheckDirection();
         }
-        
+
+        private void CheckDirection()
+        {
+            if (rigidbody2D.linearVelocityX > 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if (rigidbody2D.linearVelocityX < 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+
         protected internal virtual void OnJump()
         {
             if (isGrounded)

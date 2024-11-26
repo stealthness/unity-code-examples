@@ -59,7 +59,6 @@ namespace _Scripts.Player
         {
             Debug.Log("PC: Burn Player");
             _playerState = PlayerState.Dead;
-            GetComponent<SpriteRenderer>().sprite = BurntSprite;
             _animator.Play("Burn");
             _playerMovement2D.DeadStop();
             var delay = _animator.GetCurrentAnimatorStateInfo(0).length;
