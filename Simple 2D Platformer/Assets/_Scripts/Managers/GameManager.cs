@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Scripts.Managers
@@ -23,6 +24,22 @@ namespace _Scripts.Managers
             {
                 Destroy(gameObject);
                 DontDestroyOnLoad(this);
+            }
+        }
+
+        private void Update()
+        {
+            if (gameState == GameState.GameOver && Input.GetKeyDown(KeyCode.R))
+            {
+                OnRestartGame();
+            } 
+            if (gameState == GameState.Playing && Input.GetKeyDown(KeyCode.Escape))
+            {
+                OnTogglePause(true);
+            } 
+            if (gameState == GameState.Paused && Input.GetKeyDown(KeyCode.Escape))
+            {
+                OnTogglePause(false);
             }
         }
 
@@ -65,13 +82,21 @@ namespace _Scripts.Managers
             if (gameState == GameState.Playing && pause)
             {
                 Time.timeScale = 0;
-                GameState gameState = GameState.Paused;
+                gameState = GameState.Paused;
             }
             else
             {
+                gameState = GameState.Playing;
                 Time.timeScale = 1;
             }
         }
+        
+        public void OnGameOver()
+        {
+            Time.timeScale = 0;
+            gameState = GameState.GameOver;
+        }
+        
         
     }
 
