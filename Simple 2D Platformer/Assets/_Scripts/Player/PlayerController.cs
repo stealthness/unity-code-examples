@@ -6,6 +6,7 @@ namespace _Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        private Animator _animator;
         private PlayerMovement2D _playerMovement2D;
         private PlayerState _playerState;
         
@@ -13,6 +14,7 @@ namespace _Scripts.Player
 
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
             _playerMovement2D = GetComponent<PlayerMovement2D>();
         }
 
@@ -55,10 +57,23 @@ namespace _Scripts.Player
         
         public void BurnPlayer()
         {
+            Debug.Log("PC: Burn Player");
             _playerState = PlayerState.Dead;
+            GetComponent<SpriteRenderer>().sprite = BurntSprite;
+            _animator.Play("Burn");
             _playerMovement2D.DeadStop();
+            var delay = _animator.GetCurrentAnimatorStateInfo(0).length;
+            Invoke(nameof(ShowDeadPlayer), delay);
+            
+        }
+
+        public void ShowDeadPlayer()
+        {
+            _animator.enabled = false;
             GetComponent<SpriteRenderer>().sprite = BurntSprite;
         }
+        
+        
     }
 }
 
