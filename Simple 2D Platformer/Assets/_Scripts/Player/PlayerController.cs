@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace _Scripts.Player
@@ -12,7 +10,6 @@ namespace _Scripts.Player
         private PlayerState _playerState;
         
         public Sprite BurntSprite;
-        public UnityEvent PlayerDied;
 
         private void Awake()
         {
@@ -73,12 +70,12 @@ namespace _Scripts.Player
         {
             _animator.enabled = false;
             GetComponent<SpriteRenderer>().sprite = BurntSprite;
-            PlayerDied.Invoke();
         }
         
         
     }
 }
+
 
 public enum PlayerState
 {
