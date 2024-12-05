@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:_Scripts.Player:PlayerMovement2DData
   speed: 5
   jumpForce: 6
-  maxJumps: 1
+  maxJumps: 2
   playerLayer:
     serializedVersion: 2
     m_Bits: 1

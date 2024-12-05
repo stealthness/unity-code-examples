@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace _Scripts.Player
 {
@@ -9,7 +10,7 @@ namespace _Scripts.Player
         private PlayerMovement2D _playerMovement2D;
         private PlayerState _playerState;
         
-        public Sprite BurntSprite;
+        public Sprite burntSprite;
 
         private void Awake()
         {
@@ -33,12 +34,12 @@ namespace _Scripts.Player
             
             if (context.phase == InputActionPhase.Performed || context.phase == InputActionPhase.Started)
             {
-                _playerMovement2D.OnMove(context.ReadValue<Vector2>());
+                _playerMovement2D.Move(context.ReadValue<Vector2>());
             }
             
             if (context.phase == InputActionPhase.Canceled)
             {
-                _playerMovement2D.OnMove(Vector2.zero);
+                _playerMovement2D.Move(Vector2.zero);
             }
         }
         
@@ -51,7 +52,7 @@ namespace _Scripts.Player
             
             if (context.phase == InputActionPhase.Performed)
             {
-                _playerMovement2D.OnJump();
+                _playerMovement2D.Jump();
             }
         }
         
@@ -69,7 +70,7 @@ namespace _Scripts.Player
         public void ShowDeadPlayer()
         {
             _animator.enabled = false;
-            GetComponent<SpriteRenderer>().sprite = BurntSprite;
+            GetComponent<SpriteRenderer>().sprite = burntSprite;
         }
         
         

@@ -30,9 +30,9 @@ namespace _Scripts.Core
         {
             this.direction = direction;
 
-rigidbody2D.linearVelocity = isGrounded 
-    ? stats.speed * new Vector2(direction.x, 0) 
-    : new Vector2(stats.speed * direction.x, rigidbody2D.linearVelocity.y);
+            rigidbody2D.linearVelocity = isGrounded 
+                ? stats.speed * new Vector2(direction.x, 0) 
+                : new Vector2(stats.speed * direction.x, rigidbody2D.linearVelocity.y);
 
             CheckDirection();
         }
