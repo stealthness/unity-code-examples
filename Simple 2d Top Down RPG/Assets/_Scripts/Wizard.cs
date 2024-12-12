@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-
 namespace _Scripts
 {
     public class Wizard : MonoBehaviour
@@ -20,7 +18,6 @@ namespace _Scripts
         {
             if (chatText.enabled)
             {
-
                 chatText.transform.position = _camera.WorldToScreenPoint(transform.position + Vector3.up * 2);
 
             }

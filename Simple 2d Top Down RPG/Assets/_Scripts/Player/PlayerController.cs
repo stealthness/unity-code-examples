@@ -5,6 +5,8 @@ namespace _Scripts.Player
 {
     
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(SpriteRenderer))]
+    [RequireComponent(typeof(PlayerAnimator))]
     public class PlayerController : MonoBehaviour
     {
         private Rigidbody2D _rb;
@@ -14,7 +16,7 @@ namespace _Scripts.Player
         [SerializeField] private float speed = 5f;
         [SerializeField] private float jumpForce = 10f;
         [SerializeField] private Vector2 direction;
-        [SerializeField] private float _TOL = 001f;
+        private const float Tol = 0.01f;
 
         private void Awake()
         {
@@ -26,6 +28,10 @@ namespace _Scripts.Player
         }
         
 
+        /// <summary>
+        /// OnMove is called when the player moves
+        /// </summary>
+        /// <param name="context"></param>
         public void OnMove(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -48,17 +54,19 @@ namespace _Scripts.Player
             _rb.linearVelocity = speed * new Vector2(direction.x, direction.y);
         }
 
+        /// <summary>
+        ///  Change the direction of the sprite as per the direction of the player
+        /// </summary>
         void ChangeDirection()
         {
-            if (direction.x < _TOL)
+            if (direction.x < -Tol)
             {
-                _sr.flipX = true;
-            }else if (direction.x > _TOL)
-            {
-                _sr.flipX = false;
+             _sr.flipX = true;
             }
-            
-            
+            if (direction.x > Tol)
+            {
+             _sr.flipX = false;
+            }               
         }
     }
 }
