@@ -9,18 +9,19 @@ namespace _Scripts.Player
     {
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
+        private PlayerAnimator _playerAnimator;
         
         [SerializeField] private float speed = 5f;
         [SerializeField] private float jumpForce = 10f;
         [SerializeField] private Vector2 direction;
-        [SerializeField] private float _TOL = 0.1f;
+        [SerializeField] private float _TOL = 001f;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _rb.gravityScale = 0;
             _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
+            _playerAnimator = GetComponent<PlayerAnimator>();
             _sr = GetComponent<SpriteRenderer>();
         }
         
@@ -30,11 +31,15 @@ namespace _Scripts.Player
             if (context.performed)
             {
                 direction = context.ReadValue<Vector2>();
+                ChangeDirection();
+                _playerAnimator.PlayAnimation(PlayerAnimation.Moving);
+                
                 
             }
             if (context.canceled)
             {
                 direction = Vector2.zero;
+                _playerAnimator.PlayAnimation(PlayerAnimation.Idle);
             }
         }
 
@@ -45,10 +50,10 @@ namespace _Scripts.Player
 
         void ChangeDirection()
         {
-            if (_rb.linearVelocityX < _TOL)
+            if (direction.x < _TOL)
             {
                 _sr.flipX = true;
-            }else if (_rb.linearVelocityX > _TOL)
+            }else if (direction.x > _TOL)
             {
                 _sr.flipX = false;
             }

@@ -12,7 +12,7 @@ namespace _Scripts.Player
             _animator = GetComponent<Animator>();
         }
 
-        public void PlayAnimation(PlayerAnimaton animation)
+        public void PlayAnimation(PlayerAnimation animation)
         {
             switch (animation)
             {
