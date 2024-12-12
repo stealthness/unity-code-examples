@@ -1,14 +1,14 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _Scripts.NPCs
 {
-    public abstract class NPC : MonoBehaviour, IInteractable
+    public abstract class NPC : MonoBehaviour, IInteractable, ITalkable
     {
 
         [SerializeField] protected SpriteRenderer interactionSprite;
-
+        [SerializeField] protected bool isInteractable = false;
+        [SerializeField] protected DialogueSo dialogue;
         private void Start()
         {
             interactionSprite.enabled = false;
@@ -16,7 +16,7 @@ namespace _Scripts.NPCs
 
         private void Update()
         {
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            if (Keyboard.current.spaceKey.wasPressedThisFrame && isInteractable)
             {
                 Interact();
             }
@@ -30,15 +30,22 @@ namespace _Scripts.NPCs
             if (other.CompareTag("Player"))
             {
                 interactionSprite.enabled = true;
+                isInteractable = true;
             }
         }
         
-        private void OnTriggerExit2D(Collider2D other)
+        protected void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
                 interactionSprite.enabled = false;
+                isInteractable = false;
             }
+        }
+
+        public void Talk()
+        {
+            Debug.Log("Talking: " + dialogue.GetNextLine());
         }
     }
 }
