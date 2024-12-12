@@ -1,16 +1,68 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Wizard : MonoBehaviour
+namespace _Scripts
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Wizard : MonoBehaviour
     {
+        public TextMeshProUGUI chatText;
+        private float _minChatDelayExit = 2f;
         
-    }
+        private Camera _camera;
 
-    // Update is called once per frame
-    void Update()
-    {
+        private void Start()
+        {
+            _camera = Camera.main;
+        }
+
+        private void Update()
+        {
+            if (chatText.enabled)
+            {
+
+                chatText.transform.position = _camera.WorldToScreenPoint(transform.position + Vector3.up * 2);
+
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                StartChat();
+            }
+        }
+
+
+
+        private void StartChat()
+        {
+            chatText.text = "Hello Bob, I am Wizard!";
+            chatText.enabled = true;
+            Invoke(nameof(DisableChat), _minChatDelayExit);
+        }
         
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                EndChat();
+            }
+        }
+
+        private void EndChat()
+        {
+            if (chatText.enabled)
+            {
+                chatText.text = "Good bye Bob!";
+                Invoke(nameof(DisableChat), _minChatDelayExit);
+            }
+        }
+        
+        private void DisableChat()
+        {
+            chatText.enabled = false;
+        }
     }
 }
