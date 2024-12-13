@@ -6,6 +6,7 @@ namespace _Scripts.NPCs
     public abstract class NPC : MonoBehaviour, IInteractable, ITalkable
     {
 
+        public DialogueController dialogueController;
         [SerializeField] protected SpriteRenderer interactionSprite;
         [SerializeField] protected bool isInteractable = false;
         [SerializeField] protected DialogueSo dialogue;
@@ -40,12 +41,16 @@ namespace _Scripts.NPCs
             {
                 interactionSprite.enabled = false;
                 isInteractable = false;
+                dialogueController.ResetDialogue();
             }
         }
 
-        public void Talk()
+        public void Talk(DialogueSo dialogue)
         {
-            Debug.Log("Talking: " + dialogue.GetNextLine());
+            Debug.Log("Talk: " + dialogue.speakerName + " " + dialogue.dialogue.Length);
+
+            dialogueController.ShowNextParagraph(dialogue);
+            
         }
     }
 }
