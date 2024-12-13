@@ -29,6 +29,11 @@ namespace _Scripts.NPCs
 
             return null;
         }
+        
+        public void ResetIndex()
+        {
+            currentIndex = 0;
+        }
 
     }
 }

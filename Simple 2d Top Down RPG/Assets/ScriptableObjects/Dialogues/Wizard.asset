@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d08dd6fb22747ea8be86b4be46d1ae4, type: 3}
   m_Name: Wizard
   m_EditorClassIdentifier: 
-  speakerName: 
-  dialogue: []
+  speakerName: Wizard
+  dialogue:
+  - Im a Wizard
+  - You look like an adventureer
+  - Find me som fruit
   currentIndex: 0

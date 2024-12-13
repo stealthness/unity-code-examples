@@ -6,11 +6,12 @@ namespace _Scripts.NPCs
 {
     public class DialogueController: MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI NPCName;
-        [SerializeField] private TextMeshProUGUI dialogueText;
+        [SerializeField] private TextMeshProUGUI npcNameText;
+        [SerializeField] private TextMeshProUGUI npcDialogueText;
 
-        private Queue<string> _paragraphs;
-        private bool conversationEnded = false;
+        private Queue<string> _paragraphs = new Queue<string>();
+        private bool _conversationEnded = false;
+
 
 
         private void Start()
@@ -20,39 +21,48 @@ namespace _Scripts.NPCs
 
         public void ShowNextParagraph(DialogueSo dialogue)
         {
-            Debug.Log("ShowNextParagraph: " + dialogue.speakerName + " " + dialogue.dialogue.Length);
+            if (_paragraphs == null)
+            {
+                _paragraphs = new Queue<string>();
+            }
+
+            if (_paragraphs.Count == 0)
+            {
+                if (!_conversationEnded)
+                {
+                    StartConversation(dialogue);
+                }
+                else
+                {
+                    EndConversation();
+                    return;
+                }
+            }
             
-            if (!conversationEnded)
+            npcDialogueText.text = _paragraphs.Dequeue();
+            
+            if (_paragraphs.Count == 0)
             {
-                StartConversation(dialogue);
+                _conversationEnded = true;
             }
-            else
-            {
-                EndConversation();
-            }
+            
         }
 
         private void StartConversation(DialogueSo dialogue)
         {
-
             if (!gameObject.activeSelf)
             {
-                gameObject.SetActive(true);            
-                NPCName.text = dialogue.speakerName;
-                _paragraphs = new Queue<string>();
-               foreach (var line in dialogue.dialogue)
-               {
-                   _paragraphs.Enqueue(line);
-               }
+                gameObject.SetActive(true);
             }
-            if (_paragraphs.Count == 0)
+            
+            _conversationEnded = false;
+            npcNameText.text = dialogue.speakerName;
+            _paragraphs = new Queue<string>();
+            
+            foreach (var line in dialogue.dialogue)
             {
-                Debug.Log("End of conversation");
-                conversationEnded = true;
-                return;
+                _paragraphs.Enqueue(line);
             }
-            Debug.Log("ShowNextParagraph: " + _paragraphs.Count);
-            dialogueText.text = _paragraphs.Dequeue();
 
             
  
@@ -60,22 +70,27 @@ namespace _Scripts.NPCs
 
         private void EndConversation()
         {
+            _paragraphs.Clear();
             gameObject.SetActive(false);
-            conversationEnded = true;
+            _conversationEnded = true;
         }
 
         public void ResetDialogue()
         {
-            _paragraphs.Clear();
+            Debug.Log("ResetDialogue");
+            if (_paragraphs != null)
+            {
+               _paragraphs.Clear();
+            }
+ 
             gameObject.SetActive(false);
-            conversationEnded = true;
+            _conversationEnded = false;
         }
 
         public void HideDialogue()
         {
-            _paragraphs.Clear();
+            Debug.Log("HideDialogue");
             gameObject.SetActive(false);
-            conversationEnded = true;
         }
     }
 }
