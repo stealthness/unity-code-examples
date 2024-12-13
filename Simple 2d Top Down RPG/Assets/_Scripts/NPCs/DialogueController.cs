@@ -7,6 +7,7 @@ namespace _Scripts.NPCs
 {
     public class DialogueController: MonoBehaviour
     {
+        private const string HtmlAlpha = "<color=#00000000>";
         [SerializeField] private TextMeshProUGUI npcNameText;
         [SerializeField] private TextMeshProUGUI npcDialogueText;
         [SerializeField] private float typingSpeed = 0.1f;
@@ -65,14 +66,12 @@ namespace _Scripts.NPCs
             string originalText = text;
             string displayText = "";
             int alphaIndex = 0;
-            
-            string HTML_ALTHPA = "<color=#00000000>";
-            
+
             foreach (var letter in text.ToCharArray())
             {
                 alphaIndex++;
                 npcDialogueText.text = originalText;
-                displayText = npcDialogueText.text.Insert(alphaIndex, HTML_ALTHPA);
+                displayText = npcDialogueText.text.Insert(alphaIndex, HtmlAlpha);
                 npcDialogueText.text = displayText;
                 yield return new WaitForSeconds(typingSpeed);
             }
