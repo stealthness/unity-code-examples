@@ -37,7 +37,7 @@ namespace _Scripts.NPCs
                 {
                     StartConversation(dialogue);
                 }
-                else
+                else if (_conversationEnded && !_isTyping)
                 {
                     EndConversation();
                     return;
@@ -47,6 +47,10 @@ namespace _Scripts.NPCs
             if (!_isTyping)
             {
                 _dialogueTyping = StartCoroutine(TypeText(_paragraphs.Dequeue()));
+            }
+            else
+            {
+                CompleteTyping();
             }
             
             
@@ -74,6 +78,14 @@ namespace _Scripts.NPCs
             _isTyping = false;
         }
 
+        private void CompleteTyping()
+        {
+            StopCoroutine(_dialogueTyping);
+            npcDialogueText.text = npcDialogueText.text.Replace(HtmlAlpha, "");
+            _isTyping = false;
+        }
+        
+        
         private void StartConversation(DialogueSo dialogue)
         {
             if (!gameObject.activeSelf)
@@ -89,9 +101,6 @@ namespace _Scripts.NPCs
             {
                 _paragraphs.Enqueue(line);
             }
-
-            
- 
         }
 
         private void EndConversation()
