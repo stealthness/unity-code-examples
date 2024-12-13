@@ -1,8 +1,9 @@
-namespace _Scripts.NPCs
+using _Scripts.NPCs;
+
+namespace _Scripts.Dialogue
 {
     public interface ITalkable
     {
-        
-        void Talk(DialogueSo dialogue);
+        void Talk(DialogueScriptableObject dialogue);
     }
 }

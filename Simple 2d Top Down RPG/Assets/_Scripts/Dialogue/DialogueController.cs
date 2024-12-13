@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace _Scripts.NPCs
+namespace _Scripts.Dialogue
 {
     public class DialogueController: MonoBehaviour
     {
@@ -24,7 +24,7 @@ namespace _Scripts.NPCs
             _paragraphs = new Queue<string>();
         }
 
-        public void ShowNextParagraph(DialogueSo dialogue)
+        public void ShowNextParagraph(DialogueScriptableObject dialogue)
         {
             if (_paragraphs == null)
             {
@@ -86,7 +86,7 @@ namespace _Scripts.NPCs
         }
         
         
-        private void StartConversation(DialogueSo dialogue)
+        private void StartConversation(DialogueScriptableObject dialogue)
         {
             if (!gameObject.activeSelf)
             {

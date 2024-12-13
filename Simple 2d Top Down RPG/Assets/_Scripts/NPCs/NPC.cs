@@ -1,3 +1,4 @@
+using _Scripts.Dialogue;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,7 @@ namespace _Scripts.NPCs
         public DialogueController dialogueController;
         [SerializeField] protected SpriteRenderer interactionSprite;
         [SerializeField] protected bool isInteractable = false;
-        [SerializeField] protected DialogueSo dialogue;
+        [SerializeField] protected DialogueScriptableObject dialogue;
         private void Start()
         {
             interactionSprite.enabled = false;
@@ -45,12 +46,9 @@ namespace _Scripts.NPCs
             }
         }
 
-        public void Talk(DialogueSo dialogue)
+        public void Talk(DialogueScriptableObject dialogue)
         {
-            Debug.Log("Talk: " + dialogue.speakerName + " " + dialogue.dialogue.Length);
-
             dialogueController.ShowNextParagraph(dialogue);
-            
         }
     }
 }
