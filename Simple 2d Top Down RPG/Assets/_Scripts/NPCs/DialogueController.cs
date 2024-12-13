@@ -44,11 +44,9 @@ namespace _Scripts.NPCs
                 }
             }
 
-            var text = _paragraphs.Dequeue();
-
             if (!_isTyping)
             {
-                _dialogueTyping = StartCoroutine(TypeText(text));
+                _dialogueTyping = StartCoroutine(TypeText(_paragraphs.Dequeue()));
             }
             
             
@@ -59,20 +57,17 @@ namespace _Scripts.NPCs
             
         }
 
-        private IEnumerator TypeText(string text)    
+        private IEnumerator TypeText(string originalText)    
         {
             _isTyping = true;
             npcDialogueText.text = "";
-            string originalText = text;
-            string displayText = "";
             int alphaIndex = 0;
 
-            foreach (var letter in text.ToCharArray())
+            foreach (var letter in originalText.ToCharArray())
             {
                 alphaIndex++;
                 npcDialogueText.text = originalText;
-                displayText = npcDialogueText.text.Insert(alphaIndex, HtmlAlpha);
-                npcDialogueText.text = displayText;
+                npcDialogueText.text = npcDialogueText.text.Insert(alphaIndex, HtmlAlpha);
                 yield return new WaitForSeconds(typingSpeed);
             }
 
