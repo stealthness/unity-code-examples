@@ -12,16 +12,14 @@ namespace _Scripts.Player
             _animator = GetComponent<Animator>();
         }
 
-        public void PlayAnimation(PlayerAnimation animation)
+        public void PlayAnimation(PlayerAnimation animationState)
         {
-            switch (animation)
+            switch (animationState)
             {
                 case PlayerAnimation.Moving:
                     _animator.Play("Moving");
                     break;
                 case PlayerAnimation.Idle:
-                    _animator.Play("Idle");
-                    break;
                 default:
                     _animator.Play("Idle");
                     break;

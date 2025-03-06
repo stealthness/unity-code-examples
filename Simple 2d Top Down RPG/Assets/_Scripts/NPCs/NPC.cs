@@ -46,9 +46,9 @@ namespace _Scripts.NPCs
             }
         }
 
-        public void Talk(DialogueScriptableObject dialogue)
+        public void Talk(DialogueScriptableObject dialogueScribtableObject)
         {
-            dialogueController.ShowNextParagraph(dialogue);
+            dialogueController.ShowNextParagraph(dialogueScribtableObject);
         }
     }
 }

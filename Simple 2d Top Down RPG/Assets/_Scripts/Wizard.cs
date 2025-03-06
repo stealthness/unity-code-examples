@@ -3,8 +3,7 @@ namespace _Scripts
 {
     public class Wizard : NPCs.NPC
     {
-
-
+        
 
         public override void Interact()
         {
@@ -12,7 +11,7 @@ namespace _Scripts
         }
         
         
-        private new void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             base.OnTriggerExit2D(other);
             if (other.CompareTag("Player"))

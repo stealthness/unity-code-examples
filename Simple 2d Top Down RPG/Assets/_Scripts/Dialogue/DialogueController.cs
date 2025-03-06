@@ -61,6 +61,11 @@ namespace _Scripts.Dialogue
             
         }
 
+        /// <summary>
+        /// This method types the text letter by letter
+        /// </summary>
+        /// <param name="originalText"></param>
+        /// <returns></returns>
         private IEnumerator TypeText(string originalText)    
         {
             _isTyping = true;
@@ -120,6 +125,14 @@ namespace _Scripts.Dialogue
  
             gameObject.SetActive(false);
             _conversationEnded = false;
+        }
+        
+        public void SkipTyping()
+        {
+            if (_isTyping)
+            {
+                CompleteTyping();
+            }
         }
 
         public void HideDialogue()
