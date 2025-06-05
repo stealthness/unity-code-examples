@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace _Scripts
 {
+    
+    [RequireComponent(typeof(AudioSource))]
     public class MouseClickDetection : MonoBehaviour
     {
         public InputActionAsset inputActionAsset;
+        public AudioClip clickSelectedClip;
+        public AudioClip clickDeselectedClip;
         
         private InputAction _mouseClickAction;
         private Camera _mainCamera;
+        private AudioSource _audioSource;
+        
         
         public void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
             _mainCamera = Camera.main;
             _mouseClickAction = inputActionAsset.FindActionMap("ClickerControls").FindAction("MouseClick");
 
@@ -43,10 +51,15 @@ namespace _Scripts
             
             if (overlapPoint && overlapPoint.CompareTag("Target"))
             {
-                if (overlapPoint.TryGetComponent<Target>(out Target target))
+                if (overlapPoint.TryGetComponent<Target>(out var target))
                 {
+                    _audioSource.PlayOneShot(clickSelectedClip);
                     target.DestroyTarget();
                 }
+            }
+            else
+            {
+                _audioSource.PlayOneShot(clickDeselectedClip);
             }
 
         }
