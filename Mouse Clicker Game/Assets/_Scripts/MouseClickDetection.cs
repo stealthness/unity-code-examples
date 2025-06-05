@@ -12,8 +12,8 @@ namespace _Scripts
         public void Awake()
         {
             mainCamera = Camera.main;
-            inputActionAsset = ScriptableObject.CreateInstance<InputActionAsset>();
             mouseClickAction = inputActionAsset.FindActionMap("ClickerControls").FindAction("MouseClick");
+
         }
         
         void OnEnable()
@@ -37,16 +37,29 @@ namespace _Scripts
 
         private void DetectIfTargetClicked()
         {
-            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit hit;
+            Vector2 point = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            var collider = Physics2D.OverlapPoint(point);
             
-            if (Physics.Raycast(ray, out hit))
+            if (collider != null)
             {
-                if (hit.collider.CompareTag("Target"))
+                Debug.Log("Clicked on: " + collider.name);
+                // You can add more logic here to handle the clicked object
+                if (collider.CompareTag("Target"))
                 {
-                    GameManager.Instance.OnTargetHit(hit.collider.gameObject);
+                    Debug.Log("Target clicked!");
+                    collider.GetComponent<Target>().DestroyTarget();
+                    // Handle target click logic here
+                }
+                else
+                {
+                    Debug.Log("Clicked on a different object: " + collider.name);
                 }
             }
+            else
+            {
+                Debug.Log("Clicked on empty space");
+            }
+
         }
     }
 }
