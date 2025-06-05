@@ -6,29 +6,30 @@ namespace _Scripts
     public class MouseClickDetection : MonoBehaviour
     {
         public InputActionAsset inputActionAsset;
-        private InputAction mouseClickAction;
-        private Camera mainCamera;
+        
+        private InputAction _mouseClickAction;
+        private Camera _mainCamera;
         
         public void Awake()
         {
-            mainCamera = Camera.main;
-            mouseClickAction = inputActionAsset.FindActionMap("ClickerControls").FindAction("MouseClick");
+            _mainCamera = Camera.main;
+            _mouseClickAction = inputActionAsset.FindActionMap("ClickerControls").FindAction("MouseClick");
 
         }
-        
-        void OnEnable()
+
+        private void OnEnable()
         {
-            mouseClickAction.Enable();
+            _mouseClickAction.Enable();
         }
-        
-        void OnDisable()
+
+        private void OnDisable()
         {
-            mouseClickAction.Disable();
+            _mouseClickAction.Disable();
         }
-        
-        void Update()
+
+        private void Update()
         {
-            if (mouseClickAction.triggered)
+            if (_mouseClickAction.triggered)
             {
                 Debug.Log("Mouse Clicked");
                 DetectIfTargetClicked();
@@ -37,27 +38,15 @@ namespace _Scripts
 
         private void DetectIfTargetClicked()
         {
-            Vector2 point = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 point = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             var collider = Physics2D.OverlapPoint(point);
             
             if (collider != null)
             {
-                Debug.Log("Clicked on: " + collider.name);
-                // You can add more logic here to handle the clicked object
                 if (collider.CompareTag("Target"))
                 {
-                    Debug.Log("Target clicked!");
                     collider.GetComponent<Target>().DestroyTarget();
-                    // Handle target click logic here
                 }
-                else
-                {
-                    Debug.Log("Clicked on a different object: " + collider.name);
-                }
-            }
-            else
-            {
-                Debug.Log("Clicked on empty space");
             }
 
         }
