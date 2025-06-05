@@ -39,13 +39,13 @@ namespace _Scripts
         private void DetectIfTargetClicked()
         {
             Vector2 point = _mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            var collider = Physics2D.OverlapPoint(point);
+            var overlapPoint = Physics2D.OverlapPoint(point);
             
-            if (collider != null)
+            if (overlapPoint && overlapPoint.CompareTag("Target"))
             {
-                if (collider.CompareTag("Target"))
+                if (overlapPoint.TryGetComponent<Target>(out Target target))
                 {
-                    collider.GetComponent<Target>().DestroyTarget();
+                    target.DestroyTarget();
                 }
             }
 
